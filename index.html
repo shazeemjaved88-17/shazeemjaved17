@@ -689,67 +689,171 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- FULL ADMIN DASHBOARD MODAL -->
-<div id="adminDashboardModal" class="fixed inset-0 bg-navy/90 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
-  <div class="bg-white rounded-3xl p-6 sm:p-8 w-full max-w-5xl shadow-2xl relative max-h-[92vh] flex flex-col">
+<!-- FULL STYLISH ADMIN DASHBOARD MODAL -->
+<div id="adminDashboardModal" class="fixed inset-0 bg-navy/90 backdrop-blur-md hidden z-50 flex items-center justify-center p-3 sm:p-6">
+  <div class="bg-white/95 backdrop-blur-xl rounded-[2rem] p-6 sm:p-8 w-full max-w-6xl shadow-2xl relative max-h-[94vh] flex flex-col border border-white/20">
     
     <!-- Dashboard Header -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-gray-100">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-2xl bg-navy text-mint flex items-center justify-center">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 01-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-gray-100">
+      <div class="flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-navy via-navyLight to-mint/80 text-mint flex items-center justify-center shadow-soft shrink-0">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
         </div>
         <div>
-          <h3 class="font-extrabold text-xl text-navy">Dr. Aqsa Clinic Admin Dashboard</h3>
-          <p class="text-steel text-xs">Real-time management for Appointments and Patient Records</p>
+          <div class="flex items-center gap-2">
+            <h3 class="font-extrabold text-2xl text-navy">Dr. Aqsa Clinic Admin Panel</h3>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-mint/20 text-mintDark uppercase tracking-wider">Live System</span>
+          </div>
+          <p class="text-steel text-xs mt-0.5">Real-time management for Appointments and Patient Records</p>
         </div>
       </div>
-      <div class="flex items-center gap-3">
-        <button id="adminHomeBtn" class="px-3.5 py-2 bg-mist hover:bg-mint/20 hover:text-navy text-navy font-bold text-xs rounded-xl flex items-center gap-1.5 transition-colors" title="Back to Home Screen">
-          <svg class="w-4 h-4 text-mintDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <button id="adminHomeBtn" class="btn-lift px-4 py-2.5 bg-mist hover:bg-mint/20 text-navy font-bold text-xs rounded-xl flex items-center gap-2 border border-navy/5 transition-all" title="Back to Home Screen">
+          <svg class="w-4 h-4 text-mintDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
           <span>Home</span>
         </button>
-        <button id="refreshAdminData" class="px-3.5 py-2 bg-mist hover:bg-gray-200 text-navy font-bold text-xs rounded-xl flex items-center gap-1.5 transition-colors">
-          <svg class="w-3.5 h-3.5 text-steel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          Refresh Data
+
+        <button id="addWalkInBtn" class="btn-lift px-4 py-2.5 bg-mint text-navy font-extrabold text-xs rounded-xl flex items-center gap-1.5 shadow-soft hover:bg-mintDark transition-all">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          + Add Appointment
         </button>
-        <button id="closeAdminDashboard" class="px-4 py-2 bg-red-100 text-red-700 hover:bg-red-200 font-bold text-xs rounded-xl transition-colors">Logout Admin</button>
-      </div>
-    </div>min</button>
+
+        <button id="refreshAdminData" class="px-3.5 py-2.5 bg-mist hover:bg-gray-200 text-navy font-bold text-xs rounded-xl flex items-center gap-1.5 transition-colors">
+          <svg id="refreshIcon" class="w-3.5 h-3.5 text-steel transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          Refresh
+        </button>
+
+        <button id="closeAdminDashboard" class="px-4 py-2.5 bg-red-100 text-red-700 hover:bg-red-200 font-bold text-xs rounded-xl transition-colors">Logout</button>
       </div>
     </div>
 
-    <!-- Dashboard Tabs -->
-    <div class="flex border-b border-gray-200 mt-4">
-      <button id="tabAppointmentsBtn" class="py-3 px-6 text-sm font-extrabold text-navy border-b-2 border-mintDark flex items-center gap-2">
-        <svg class="w-4 h-4 text-mintDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        All Appointments <span id="appointmentsBadge" class="ml-1 px-2 py-0.5 text-xs bg-mint/20 text-mintDark rounded-full">0</span>
-      </button>
-      <button id="tabPatientsBtn" class="py-3 px-6 text-sm font-bold text-steel hover:text-navy border-b-2 border-transparent flex items-center gap-2">
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-        Patients Registry <span id="patientsBadge" class="ml-1 px-2 py-0.5 text-xs bg-mist text-steel rounded-full">0</span>
-      </button>
+    <!-- Quick Stats Cards Bar -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 my-4">
+      <div class="bg-mist/80 rounded-2xl p-4 border border-gray-100 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-navy text-mint flex items-center justify-center font-bold text-sm shrink-0">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <div>
+          <p class="text-[11px] font-bold uppercase text-steel tracking-wide">Total Bookings</p>
+          <p id="statTotal" class="font-extrabold text-xl text-navy">0</p>
+        </div>
+      </div>
+
+      <div class="bg-amber-50/70 rounded-2xl p-4 border border-amber-100 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-sm shrink-0">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <p class="text-[11px] font-bold uppercase text-amber-800 tracking-wide">Pending</p>
+          <p id="statPending" class="font-extrabold text-xl text-amber-900">0</p>
+        </div>
+      </div>
+
+      <div class="bg-emerald-50/70 rounded-2xl p-4 border border-emerald-100 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <p class="text-[11px] font-bold uppercase text-emerald-800 tracking-wide">Confirmed</p>
+          <p id="statConfirmed" class="font-extrabold text-xl text-emerald-900">0</p>
+        </div>
+      </div>
+
+      <div class="bg-sky-50/70 rounded-2xl p-4 border border-sky-100 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold text-sm shrink-0">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <div>
+          <p class="text-[11px] font-bold uppercase text-sky-800 tracking-wide">Patients Registered</p>
+          <p id="statPatients" class="font-extrabold text-xl text-sky-900">0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Tab Filter Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 my-2 pb-2 border-b border-gray-100">
+      <div class="flex gap-2">
+        <button id="tabAppointmentsBtn" class="py-2.5 px-5 text-xs font-extrabold text-navy border-b-2 border-mintDark flex items-center gap-2 transition-all">
+          <svg class="w-4 h-4 text-mintDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          All Appointments <span id="appointmentsBadge" class="ml-1 px-2 py-0.5 text-xs bg-mint/20 text-mintDark rounded-full">0</span>
+        </button>
+        <button id="tabPatientsBtn" class="py-2.5 px-5 text-xs font-bold text-steel hover:text-navy border-b-2 border-transparent flex items-center gap-2 transition-all">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          Patients Registry <span id="patientsBadge" class="ml-1 px-2 py-0.5 text-xs bg-mist text-steel rounded-full">0</span>
+        </button>
+      </div>
+
+      <div class="relative w-full sm:w-72">
+        <input type="text" id="adminSearchInput" placeholder="Search patient, phone, service..." class="w-full pl-9 pr-4 py-2 bg-mist rounded-xl text-xs outline-none focus:ring-2 focus:ring-mint/60 transition" />
+        <svg class="w-4 h-4 text-steel absolute left-3 top-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </div>
     </div>
 
     <!-- Tab 1: Appointments View -->
-    <div id="adminAppointmentsTab" class="flex-1 overflow-y-auto pt-4 space-y-4">
+    <div id="adminAppointmentsTab" class="flex-1 overflow-y-auto pt-2 space-y-4">
       <div id="appointmentsTableContainer">
         <!-- Dynamically rendered -->
-        <p class="text-center py-10 text-steel text-sm">Loading appointments from database...</p>
+        <p class="text-center py-10 text-steel text-sm">Loading appointments...</p>
       </div>
     </div>
 
     <!-- Tab 2: Patients Registry View -->
-    <div id="adminPatientsTab" class="flex-1 overflow-y-auto pt-4 space-y-4 hidden">
+    <div id="adminPatientsTab" class="flex-1 overflow-y-auto pt-2 space-y-4 hidden">
       <div id="patientsTableContainer">
         <!-- Dynamically rendered -->
         <p class="text-center py-10 text-steel text-sm">Loading registered patients...</p>
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- WALK-IN APPOINTMENT MODAL FOR ADMIN -->
+<div id="walkInModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 sm:p-8 w-full max-w-md shadow-2xl relative animate-floaty">
+    <button id="closeWalkInModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-mist text-steel hover:bg-navy hover:text-white flex items-center justify-center text-base font-bold transition-colors">&times;</button>
+    
+    <div class="text-center mb-5">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 text-mintDark mx-auto flex items-center justify-center mb-3 shadow-soft">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <h3 class="font-extrabold text-xl text-navy">New Clinic Appointment</h3>
+      <p class="text-steel text-xs mt-1">Add a new patient booking directly to the schedule</p>
+    </div>
+
+    <form id="walkInForm" class="space-y-3.5">
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Patient Full Name</label>
+        <input type="text" id="wiName" required placeholder="e.g. Tariq Mehmood" class="w-full px-4 py-3 bg-mist rounded-xl text-sm outline-none focus:ring-2 focus:ring-mint/60 transition" />
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Phone Number</label>
+        <input type="tel" id="wiPhone" required placeholder="0300 1234567" class="w-full px-4 py-3 bg-mist rounded-xl text-sm outline-none focus:ring-2 focus:ring-mint/60 transition" />
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Preferred Date</label>
+        <input type="date" id="wiDate" required class="w-full px-4 py-3 bg-mist rounded-xl text-sm outline-none focus:ring-2 focus:ring-mint/60 transition text-steel" />
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Dental Service</label>
+        <select id="wiService" class="w-full px-4 py-3 bg-mist rounded-xl text-sm outline-none focus:ring-2 focus:ring-mint/60 transition text-navy font-medium">
+          <option>Teeth Whitening</option>
+          <option>Root Canal Treatment</option>
+          <option>Dental Implants</option>
+          <option>Braces &amp; Orthodontics</option>
+          <option>Scaling &amp; Polishing</option>
+          <option>General Check-up</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="w-full py-3.5 bg-navy text-white font-extrabold rounded-xl shadow-soft hover:bg-navyLight transition-colors mt-2">
+        Save Appointment Record
+      </button>
+    </form>
   </div>
 </div>
 
@@ -791,12 +895,22 @@ tailwind.config = {
   let adminSession = null;
   let patientAppointments = [];
 
+  const DEFAULT_DEMO_APPOINTMENTS = [
+    { id: 'app_101', full_name: 'Usman Ali', phone: '0300 8472910', service: 'Teeth Whitening', preferred_date: '2026-08-26', status: 'confirmed', email: 'usman.ali@gmail.com' },
+    { id: 'app_102', full_name: 'Sana Fatima', phone: '0321 4910293', service: 'Root Canal Treatment', preferred_date: '2026-08-27', status: 'pending', email: 'sana.fatima@gmail.com' },
+    { id: 'app_103', full_name: 'Hamza Khan', phone: '0333 9102847', service: 'Dental Implants', preferred_date: '2026-08-28', status: 'completed', email: 'hamza.khan@gmail.com' }
+  ];
+
   function getStoredAppointments() {
     try {
-      const list = JSON.parse(localStorage.getItem('clinic_appointments_list') || '[]');
-      return Array.isArray(list) ? list : [];
+      let list = JSON.parse(localStorage.getItem('clinic_appointments_list') || 'null');
+      if (!list || !Array.isArray(list) || list.length === 0) {
+        list = DEFAULT_DEMO_APPOINTMENTS;
+        localStorage.setItem('clinic_appointments_list', JSON.stringify(list));
+      }
+      return list;
     } catch (_) {
-      return [];
+      return DEFAULT_DEMO_APPOINTMENTS;
     }
   }
 
@@ -1371,110 +1485,208 @@ tailwind.config = {
   refreshAdminData.addEventListener('click', () => loadAdminDashboardData());
 
   async function loadAdminDashboardData() {
-    fetchAdminAppointments();
-    fetchAdminPatients();
+    // --- WALK-IN APPOINTMENT HANDLERS ---
+  const addWalkInBtn = document.getElementById('addWalkInBtn');
+  const walkInModal = document.getElementById('walkInModal');
+  const closeWalkInModal = document.getElementById('closeWalkInModal');
+  const walkInForm = document.getElementById('walkInForm');
+
+  if (addWalkInBtn) addWalkInBtn.addEventListener('click', () => walkInModal.classList.remove('hidden'));
+  if (closeWalkInModal) closeWalkInModal.addEventListener('click', () => walkInModal.classList.add('hidden'));
+
+  if (walkInForm) {
+    walkInForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('wiName').value.trim();
+      const phone = document.getElementById('wiPhone').value.trim();
+      const date = document.getElementById('wiDate').value;
+      const service = document.getElementById('wiService').value;
+
+      const app = {
+        id: 'wi_' + Date.now(),
+        full_name: name,
+        phone: phone,
+        preferred_date: date,
+        service: service,
+        status: 'confirmed',
+        created_at: new Date().toISOString()
+      };
+
+      saveAppointmentLocally(app);
+      patientAppointments.unshift(app);
+
+      try {
+        await fetch(sbConfig.url + '/rest/v1/appointments', {
+          method: 'POST',
+          headers: sbHeaders,
+          body: JSON.stringify(app)
+        });
+      } catch (_) {}
+
+      walkInForm.reset();
+      walkInModal.classList.add('hidden');
+      loadAdminDashboardData();
+    });
+  }
+
+  // --- SEARCH FILTER & METRICS UPDATE ---
+  const adminSearchInput = document.getElementById('adminSearchInput');
+  let currentAdminAppointments = [];
+
+  if (adminSearchInput) {
+    adminSearchInput.addEventListener('input', () => {
+      renderAdminAppointmentsTable(currentAdminAppointments, adminSearchInput.value.trim());
+    });
+  }
+
+  function updateDashboardMetrics(list, patientCount) {
+    const total = list.length;
+    const pending = list.filter(a => (a.status || 'pending') === 'pending').length;
+    const confirmed = list.filter(a => a.status === 'confirmed' || a.status === 'completed').length;
+
+    const elTotal = document.getElementById('statTotal');
+    const elPending = document.getElementById('statPending');
+    const elConfirmed = document.getElementById('statConfirmed');
+    const elPatients = document.getElementById('statPatients');
+
+    if (elTotal) elTotal.textContent = total;
+    if (elPending) elPending.textContent = pending;
+    if (elConfirmed) elConfirmed.textContent = confirmed;
+    if (elPatients) elPatients.textContent = patientCount || 1;
+  }
+
+  window.changeAppointmentStatus = function(idx, newStatus) {
+    if (currentAdminAppointments[idx]) {
+      currentAdminAppointments[idx].status = newStatus;
+      localStorage.setItem('clinic_appointments_list', JSON.stringify(currentAdminAppointments));
+      renderAdminAppointmentsTable(currentAdminAppointments, adminSearchInput ? adminSearchInput.value : '');
+      updateDashboardMetrics(currentAdminAppointments, document.getElementById('patientsBadge').textContent);
+    }
+  };
+
+  window.deleteAppointmentRow = function(idx) {
+    if (confirm('Are you sure you want to remove this appointment record?')) {
+      currentAdminAppointments.splice(idx, 1);
+      localStorage.setItem('clinic_appointments_list', JSON.stringify(currentAdminAppointments));
+      renderAdminAppointmentsTable(currentAdminAppointments, adminSearchInput ? adminSearchInput.value : '');
+      updateDashboardMetrics(currentAdminAppointments, document.getElementById('patientsBadge').textContent);
+    }
+  };
+
+  function renderAdminAppointmentsTable(list, searchTerm = '') {
+    const container = document.getElementById('appointmentsTableContainer');
+    let filtered = list;
+
+    if (searchTerm) {
+      const q = searchTerm.toLowerCase();
+      filtered = list.filter(a => 
+        (a.full_name && a.full_name.toLowerCase().includes(q)) ||
+        (a.phone && a.phone.toLowerCase().includes(q)) ||
+        (a.service && a.service.toLowerCase().includes(q)) ||
+        (a.status && a.status.toLowerCase().includes(q))
+      );
+    }
+
+    document.getElementById('appointmentsBadge').textContent = list.length;
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="bg-mist rounded-2xl p-10 text-center border border-dashed border-gray-200">
+          <svg class="w-12 h-12 text-steel/30 mx-auto mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <p class="font-extrabold text-navy text-base">No appointments match search query</p>
+          <p class="text-steel text-xs mt-1">Try searching for a different patient name, phone number, or dental service.</p>
+        </div>`;
+      return;
+    }
+
+    let rowsHtml = filtered.map((a, idx) => {
+      const initials = (a.full_name || 'P').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      let statusBadge = `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">Pending</span>`;
+      if (a.status === 'confirmed') statusBadge = `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-mint/20 text-mintDark">Confirmed</span>`;
+      if (a.status === 'completed') statusBadge = `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800">Completed</span>`;
+      if (a.status === 'cancelled') statusBadge = `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-100 text-red-700">Cancelled</span>`;
+
+      return `
+        <tr class="border-b border-gray-100 hover:bg-mist/70 transition-colors text-xs">
+          <td class="py-3 px-4 font-bold text-navy">#${a.id ? a.id.toString().substring(0, 8) : (idx + 1)}</td>
+          <td class="py-3 px-4">
+            <div class="flex items-center gap-2.5">
+              <div class="w-7 h-7 rounded-full bg-navy text-mint flex items-center justify-center font-bold text-[11px] shrink-0">${initials}</div>
+              <div>
+                <p class="font-bold text-navy text-xs">${a.full_name || 'Patient'}</p>
+                <p class="text-[10px] text-steel">${a.email || 'Online Booking'}</p>
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-4 font-medium text-steel">${a.phone || '-'}</td>
+          <td class="py-3 px-4 font-extrabold text-navy">${a.service || 'General Care'}</td>
+          <td class="py-3 px-4 font-medium text-steel">${a.preferred_date || 'Pending'}</td>
+          <td class="py-3 px-4">${statusBadge}</td>
+          <td class="py-3 px-4 text-right">
+            <div class="inline-flex items-center gap-1">
+              <button onclick="changeAppointmentStatus(${idx}, 'confirmed')" title="Confirm Visit" class="p-1.5 rounded-lg bg-mint/20 text-mintDark hover:bg-mintDark hover:text-navy transition-colors font-bold text-[10px]">
+                Confirm
+              </button>
+              <button onclick="changeAppointmentStatus(${idx}, 'completed')" title="Mark Completed" class="p-1.5 rounded-lg bg-sky-100 text-sky-800 hover:bg-sky-200 transition-colors font-bold text-[10px]">
+                Done
+              </button>
+              <button onclick="deleteAppointmentRow(${idx})" title="Delete Record" class="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition-colors">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>`;
+    }).join('');
+
+    container.innerHTML = `
+      <div class="overflow-x-auto rounded-2xl border border-gray-100 shadow-sm bg-white">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-mist text-navy font-extrabold text-xs uppercase tracking-wider border-b border-gray-200">
+              <th class="py-3.5 px-4">ID</th>
+              <th class="py-3.5 px-4">Patient</th>
+              <th class="py-3.5 px-4">Phone</th>
+              <th class="py-3.5 px-4">Service</th>
+              <th class="py-3.5 px-4">Preferred Date</th>
+              <th class="py-3.5 px-4">Status</th>
+              <th class="py-3.5 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>${rowsHtml}</tbody>
+        </table>
+      </div>`;
   }
 
   async function fetchAdminAppointments() {
-    const container = document.getElementById('appointmentsTableContainer');
-    container.innerHTML = `<div class="text-center py-10 text-steel text-sm">Loading appointments...</div>`;
-    
+    let dbList = [];
+    const localList = getStoredAppointments();
+
     try {
       const res = await fetch(sbConfig.url + '/rest/v1/appointments?select=*&order=created_at.desc', { headers: sbHeaders });
-      const data = await res.json();
-
-      let dbList = Array.isArray(data) ? data : [];
-      let combined = [...patientAppointments, ...dbList];
-      const uniqueAppointments = [];
-      const seenKeys = new Set();
-      for (const item of combined) {
-        const key = (item.id ? item.id : '') + '_' + item.full_name + '_' + item.service + '_' + item.preferred_date;
-        if (!seenKeys.has(key)) {
-          seenKeys.add(key);
-          uniqueAppointments.push(item);
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          dbList = data;
         }
       }
+    } catch(e) {
+      console.error('Fetch admin appointments error:', e);
+    }
 
-      document.getElementById('appointmentsBadge').textContent = uniqueAppointments.length;
-
-      if (uniqueAppointments.length === 0) {
-        container.innerHTML = `
-          <div class="bg-mist rounded-2xl p-10 text-center border border-dashed border-gray-200">
-            <svg class="w-12 h-12 text-steel/30 mx-auto mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-            <p class="font-extrabold text-navy text-lg">No appointments found</p>
-            <p class="text-steel text-xs mt-1">When patients request bookings online, their details will appear right here.</p>
-          </div>`;
-        return;
-      }
-
-      let rowsHtml = uniqueAppointments.map((a, idx) => `
-        <tr class="border-b border-gray-100 hover:bg-mist/60 transition-colors text-xs">
-          <td class="py-3 px-4 font-bold text-navy">#${a.id ? a.id.toString().substring(0, 8) : (idx + 1)}</td>
-          <td class="py-3 px-4 font-bold text-navy">${a.full_name || 'Patient'}</td>
-          <td class="py-3 px-4 text-steel">${a.phone || '-'}</td>
-          <td class="py-3 px-4 font-semibold text-navy">${a.service || 'General Care'}</td>
-          <td class="py-3 px-4 text-steel">${a.preferred_date || 'Pending'}</td>
-          <td class="py-3 px-4">
-            <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${
-              a.status === 'confirmed' ? 'bg-mint/20 text-mintDark' :
-              a.status === 'completed' ? 'bg-sky-100 text-sky-800' :
-              a.status === 'cancelled' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'
-            }">${a.status || 'pending'}</span>
-          </td>
-        </tr>
-      `).join('');
-
-      container.innerHTML = `
-        <div class="overflow-x-auto rounded-2xl border border-gray-100">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="bg-mist text-navy font-extrabold text-xs uppercase tracking-wider border-b border-gray-200">
-                <th class="py-3 px-4">ID</th>
-                <th class="py-3 px-4">Patient Name</th>
-                <th class="py-3 px-4">Phone</th>
-                <th class="py-3 px-4">Service</th>
-                <th class="py-3 px-4">Preferred Date</th>
-                <th class="py-3 px-4">Status</th>
-              </tr>
-            </thead>
-            <tbody>${rowsHtml}</tbody>
-          </table>
-        </div>`;
-    } catch (e) {
-      if (patientAppointments.length > 0) {
-        document.getElementById('appointmentsBadge').textContent = patientAppointments.length;
-        let rowsHtml = patientAppointments.map((a, idx) => `
-          <tr class="border-b border-gray-100 hover:bg-mist/60 transition-colors text-xs">
-            <td class="py-3 px-4 font-bold text-navy">#${idx + 1}</td>
-            <td class="py-3 px-4 font-bold text-navy">${a.full_name || 'Patient'}</td>
-            <td class="py-3 px-4 text-steel">${a.phone || '-'}</td>
-            <td class="py-3 px-4 font-semibold text-navy">${a.service || 'General Care'}</td>
-            <td class="py-3 px-4 text-steel">${a.preferred_date || 'Pending'}</td>
-            <td class="py-3 px-4">
-              <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">${a.status || 'pending'}</span>
-            </td>
-          </tr>
-        `).join('');
-        container.innerHTML = `
-          <div class="overflow-x-auto rounded-2xl border border-gray-100">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr class="bg-mist text-navy font-extrabold text-xs uppercase tracking-wider border-b border-gray-200">
-                  <th class="py-3 px-4">ID</th>
-                  <th class="py-3 px-4">Patient Name</th>
-                  <th class="py-3 px-4">Phone</th>
-                  <th class="py-3 px-4">Service</th>
-                  <th class="py-3 px-4">Preferred Date</th>
-                  <th class="py-3 px-4">Status</th>
-                </tr>
-              </thead>
-              <tbody>${rowsHtml}</tbody>
-            </table>
-          </div>`;
-      } else {
-        container.innerHTML = `<div class="p-4 bg-red-100 text-red-700 rounded-xl text-xs font-semibold">Error fetching appointments: ${e.message}</div>`;
+    const combined = [...localList, ...dbList];
+    const uniqueAppointments = [];
+    const seenKeys = new Set();
+    for (const item of combined) {
+      const key = (item.id ? item.id : '') + '_' + item.full_name + '_' + item.service + '_' + item.preferred_date;
+      if (!seenKeys.has(key)) {
+        seenKeys.add(key);
+        uniqueAppointments.push(item);
       }
     }
+
+    currentAdminAppointments = uniqueAppointments;
+    renderAdminAppointmentsTable(currentAdminAppointments, adminSearchInput ? adminSearchInput.value : '');
+    updateDashboardMetrics(currentAdminAppointments, document.getElementById('patientsBadge').textContent);
   }
 
   async function fetchAdminPatients() {
