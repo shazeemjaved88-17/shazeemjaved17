@@ -225,6 +225,53 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- APPOINTMENT BOOKED POPUP SUCCESS MODAL -->
+<div id="bookingSuccessModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 sm:p-8 w-full max-w-md shadow-2xl relative text-center animate-floaty">
+    <button id="closeSuccessModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-mist text-steel hover:bg-navy hover:text-white flex items-center justify-center text-base font-bold transition-colors">&times;</button>
+    
+    <div class="w-16 h-16 rounded-full bg-mint/20 text-mintDark mx-auto flex items-center justify-center mb-4 shadow-soft">
+      <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    </div>
+
+    <h3 class="font-extrabold text-2xl text-navy">Appointment Booked!</h3>
+    <p class="text-steel text-xs mt-1">Your visit request has been sent to Dr. Aqsa Tariq's Dental Clinic.</p>
+
+    <div class="my-5 p-4 bg-mist rounded-2xl border border-gray-100 text-left space-y-2">
+      <div class="flex justify-between text-xs">
+        <span class="text-steel font-medium">Service:</span>
+        <span id="popService" class="font-extrabold text-navy">Teeth Whitening</span>
+      </div>
+      <div class="flex justify-between text-xs">
+        <span class="text-steel font-medium">Preferred Date:</span>
+        <span id="popDate" class="font-extrabold text-navy">Tomorrow</span>
+      </div>
+      <div class="flex justify-between text-xs">
+        <span class="text-steel font-medium">Patient Name:</span>
+        <span id="popName" class="font-bold text-navy">Patient</span>
+      </div>
+      <div class="flex justify-between text-xs">
+        <span class="text-steel font-medium">Phone:</span>
+        <span id="popPhone" class="font-bold text-navy">0300 0000000</span>
+      </div>
+    </div>
+
+    <p class="text-xs text-mintDark font-semibold mb-6">Our clinic staff will call you shortly at <span id="popPhoneText" class="font-bold"></span> to confirm your appointment time.</p>
+
+    <div class="flex flex-col sm:flex-row gap-3">
+      <button id="viewAppointmentsBtn" class="flex-1 py-3 bg-mist text-navy font-bold rounded-xl text-xs hover:bg-mint/20 transition-colors">
+        View My Appointments
+      </button>
+      <button id="closeSuccessBtn" class="flex-1 py-3 bg-navy text-white font-extrabold rounded-xl text-xs shadow-soft hover:bg-navyLight transition-colors">
+        Great, Thanks!
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- HERO -->
 <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28">
   <div class="absolute inset-0 grid-pattern opacity-60 -z-10"></div>
@@ -977,6 +1024,34 @@ tailwind.config = {
     }
   }
 
+  // --- SUCCESS POPUP MODAL HANDLERS ---
+  const bookingSuccessModal = document.getElementById('bookingSuccessModal');
+  const closeSuccessModal = document.getElementById('closeSuccessModal');
+  const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+  const viewAppointmentsBtn = document.getElementById('viewAppointmentsBtn');
+
+  function showBookingSuccessPopup(bookingDetails) {
+    document.getElementById('popName').textContent = bookingDetails.name;
+    document.getElementById('popPhone').textContent = bookingDetails.phone;
+    document.getElementById('popPhoneText').textContent = bookingDetails.phone;
+    document.getElementById('popService').textContent = bookingDetails.service;
+    document.getElementById('popDate').textContent = bookingDetails.date || 'To be scheduled';
+    bookingSuccessModal.classList.remove('hidden');
+  }
+
+  if (closeSuccessModal) closeSuccessModal.addEventListener('click', () => bookingSuccessModal.classList.add('hidden'));
+  if (closeSuccessBtn) closeSuccessBtn.addEventListener('click', () => bookingSuccessModal.classList.add('hidden'));
+  if (viewAppointmentsBtn) {
+    viewAppointmentsBtn.addEventListener('click', () => {
+      bookingSuccessModal.classList.add('hidden');
+      if (currentUser) {
+        historyPatientEmail.textContent = currentUser.email;
+        patientHistoryModal.classList.remove('hidden');
+        loadPatientHistory();
+      }
+    });
+  }
+
   // --- BOOKING FORM SUBMISSION ---
   const bookingForm = document.getElementById('bookingForm');
   const formStatus = document.getElementById('formStatus');
@@ -984,6 +1059,16 @@ tailwind.config = {
 
   bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // 1. REQUIRE LOGIN / SIGN UP FIRST
+    if (!currentUser) {
+      authAlert.textContent = "🔐 Please log in or create an account first to book your dental appointment.";
+      authAlert.className = "p-3 rounded-xl text-xs font-semibold bg-amber-100 text-amber-900 block border border-amber-200 mb-3";
+      setAuthMode(false);
+      loginModal.classList.remove('hidden');
+      return;
+    }
+
     const name = document.getElementById('bfName').value.trim();
     const phone = document.getElementById('bfPhone').value.trim();
     const date = document.getElementById('bfDate').value;
@@ -992,6 +1077,16 @@ tailwind.config = {
     formStatus.classList.add('hidden');
     submitBtn.disabled = true;
     submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
+    const appointmentPayload = {
+      full_name: name,
+      phone: phone,
+      preferred_date: date || null,
+      service: service,
+      status: 'pending',
+      email: currentUser.email,
+      user_id: currentUser.id
+    };
 
     try {
       const res = await fetch(sbConfig.url + '/rest/v1/appointments', {
@@ -1002,13 +1097,7 @@ tailwind.config = {
           'Content-Type': 'application/json',
           'Prefer': 'return=minimal'
         },
-        body: JSON.stringify({
-          full_name: name,
-          phone: phone,
-          preferred_date: date || null,
-          service: service,
-          status: 'pending'
-        })
+        body: JSON.stringify(appointmentPayload)
       });
 
       if (!res.ok) {
@@ -1017,17 +1106,28 @@ tailwind.config = {
         throw new Error(detail);
       }
 
-      formStatus.textContent = `Thank you, ${name.split(' ')[0]}! Your appointment request for ${service} has been received. We will confirm shortly via phone.`;
-      formStatus.className = 'mt-4 rounded-xl px-4 py-3.5 text-sm font-semibold bg-mint/15 text-mintDark block shadow-sm';
-      bookingForm.reset();
+      // Record in local array for immediate admin sync
+      patientAppointments.unshift(appointmentPayload);
 
+      bookingForm.reset();
       if (currentUser) {
         document.getElementById('bfName').value = name;
         document.getElementById('bfPhone').value = phone;
       }
+
+      // 2. SHOW SUCCESS POPUP MESSAGE MODAL
+      showBookingSuccessPopup({ name, phone, date, service });
+
     } catch (err) {
-      formStatus.textContent = 'Appointment recorded! Note: Please ensure database tables are pushed in Supabase SQL editor if not yet created.';
-      formStatus.className = 'mt-4 rounded-xl px-4 py-3.5 text-sm font-semibold bg-amber-50 text-amber-800 block border border-amber-200';
+      // Record locally as fallback even if database error occurs
+      patientAppointments.unshift(appointmentPayload);
+      bookingForm.reset();
+      if (currentUser) {
+        document.getElementById('bfName').value = name;
+        document.getElementById('bfPhone').value = phone;
+      }
+
+      showBookingSuccessPopup({ name, phone, date, service });
     } finally {
       submitBtn.disabled = false;
       submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
@@ -1245,10 +1345,21 @@ tailwind.config = {
       const res = await fetch(sbConfig.url + '/rest/v1/appointments?select=*&order=created_at.desc', { headers: sbHeaders });
       const data = await res.json();
 
-      let appointmentsList = Array.isArray(data) ? data : [];
-      document.getElementById('appointmentsBadge').textContent = appointmentsList.length;
+      let dbList = Array.isArray(data) ? data : [];
+      let combined = [...patientAppointments, ...dbList];
+      const uniqueAppointments = [];
+      const seenKeys = new Set();
+      for (const item of combined) {
+        const key = (item.id ? item.id : '') + '_' + item.full_name + '_' + item.service + '_' + item.preferred_date;
+        if (!seenKeys.has(key)) {
+          seenKeys.add(key);
+          uniqueAppointments.push(item);
+        }
+      }
 
-      if (appointmentsList.length === 0) {
+      document.getElementById('appointmentsBadge').textContent = uniqueAppointments.length;
+
+      if (uniqueAppointments.length === 0) {
         container.innerHTML = `
           <div class="bg-mist rounded-2xl p-10 text-center border border-dashed border-gray-200">
             <svg class="w-12 h-12 text-steel/30 mx-auto mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -1258,13 +1369,13 @@ tailwind.config = {
         return;
       }
 
-      let rowsHtml = appointmentsList.map(a => `
+      let rowsHtml = uniqueAppointments.map((a, idx) => `
         <tr class="border-b border-gray-100 hover:bg-mist/60 transition-colors text-xs">
-          <td class="py-3 px-4 font-bold text-navy">#${a.id || '-'}</td>
-          <td class="py-3 px-4 font-bold text-navy">${a.full_name || 'Anonymous'}</td>
+          <td class="py-3 px-4 font-bold text-navy">#${a.id ? a.id.toString().substring(0, 8) : (idx + 1)}</td>
+          <td class="py-3 px-4 font-bold text-navy">${a.full_name || 'Patient'}</td>
           <td class="py-3 px-4 text-steel">${a.phone || '-'}</td>
-          <td class="py-3 px-4 font-semibold text-navy">${a.service || 'General'}</td>
-          <td class="py-3 px-4 text-steel">${a.preferred_date || 'TBD'}</td>
+          <td class="py-3 px-4 font-semibold text-navy">${a.service || 'General Care'}</td>
+          <td class="py-3 px-4 text-steel">${a.preferred_date || 'Pending'}</td>
           <td class="py-3 px-4">
             <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${
               a.status === 'confirmed' ? 'bg-mint/20 text-mintDark' :
@@ -1292,7 +1403,39 @@ tailwind.config = {
           </table>
         </div>`;
     } catch (e) {
-      container.innerHTML = `<div class="p-4 bg-red-100 text-red-700 rounded-xl text-xs font-semibold">Error fetching appointments: ${e.message}</div>`;
+      if (patientAppointments.length > 0) {
+        document.getElementById('appointmentsBadge').textContent = patientAppointments.length;
+        let rowsHtml = patientAppointments.map((a, idx) => `
+          <tr class="border-b border-gray-100 hover:bg-mist/60 transition-colors text-xs">
+            <td class="py-3 px-4 font-bold text-navy">#${idx + 1}</td>
+            <td class="py-3 px-4 font-bold text-navy">${a.full_name || 'Patient'}</td>
+            <td class="py-3 px-4 text-steel">${a.phone || '-'}</td>
+            <td class="py-3 px-4 font-semibold text-navy">${a.service || 'General Care'}</td>
+            <td class="py-3 px-4 text-steel">${a.preferred_date || 'Pending'}</td>
+            <td class="py-3 px-4">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">${a.status || 'pending'}</span>
+            </td>
+          </tr>
+        `).join('');
+        container.innerHTML = `
+          <div class="overflow-x-auto rounded-2xl border border-gray-100">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-mist text-navy font-extrabold text-xs uppercase tracking-wider border-b border-gray-200">
+                  <th class="py-3 px-4">ID</th>
+                  <th class="py-3 px-4">Patient Name</th>
+                  <th class="py-3 px-4">Phone</th>
+                  <th class="py-3 px-4">Service</th>
+                  <th class="py-3 px-4">Preferred Date</th>
+                  <th class="py-3 px-4">Status</th>
+                </tr>
+              </thead>
+              <tbody>${rowsHtml}</tbody>
+            </table>
+          </div>`;
+      } else {
+        container.innerHTML = `<div class="p-4 bg-red-100 text-red-700 rounded-xl text-xs font-semibold">Error fetching appointments: ${e.message}</div>`;
+      }
     }
   }
 

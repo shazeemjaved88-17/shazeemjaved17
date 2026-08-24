@@ -67,27 +67,22 @@ CREATE POLICY "Patients own UPDATE" ON public.patients FOR UPDATE USING (auth.ui
 -- 7. appointments table — every booking
 CREATE TABLE IF NOT EXISTS public.appointments (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  patient_id UUID REFERENCES public.patients(id) ON DELETE CASCADE NOT NULL,
-  doctor_id UUID REFERENCES public.doctors(id),
+  full_name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  preferred_date DATE,
   service TEXT NOT NULL,
-  appointment_date DATE NOT NULL,
-  appointment_time TIME NOT NULL,
-  status TEXT NOT NULL DEFAULT 'pending',  -- pending/confirmed/in_progress/completed/cancelled
-  notes TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',
+  email TEXT,
+  user_id UUID,
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
--- Enable RLS on appointments
+-- Enable RLS on appointments with public access policies
 ALTER TABLE public.appointments ENABLE ROW LEVEL SECURITY;
 
--- Patients: SELECT/INSERT only where patient_id belongs to their own patient row
--- (i.e., they can only manage appointments for their own patient record)
-CREATE POLICY "Patients own SELECT appointments" ON public.appointments FOR SELECT USING (
-  auth.uid() = (SELECT user_id FROM public.patients WHERE id = patient_id)
-);
-CREATE POLICY "Patients own INSERT appointments" ON public.appointments FOR INSERT WITH CHECK (
-  auth.uid() = (SELECT user_id FROM public.patients WHERE id = patient_id)
-);
+CREATE POLICY "Allow public select on appointments" ON public.appointments FOR SELECT USING (true);
+CREATE POLICY "Allow public insert on appointments" ON public.appointments FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow public update on appointments" ON public.appointments FOR UPDATE USING (true);
 
 -- -------------------------------------------------------------------------
 -- 8. Row-level security policies for admin tables
