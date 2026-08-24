@@ -1,7 +1,7 @@
 -- Supabase Dental Clinic — Full Schema Migration
 -- Run this in Supabase Dashboard → SQL Editor (or `supabase db push`)
--- Project: azejzqoobxknnsmerprs
--- anon key: sb_publishable_BZ6q0ul_ulA479o0KRa7Cw_RZRPVPuB
+-- Project: yjfuxoxptioddwudouqw
+-- anon key: sb_publishable_KBo8dyeQB8QPZaQpT-eBNA_0q53P7Wg
 
 -- 1. Enable UUID extension (needed for patient/appointment IDs)
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

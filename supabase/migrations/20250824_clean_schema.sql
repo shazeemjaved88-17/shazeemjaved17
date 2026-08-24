@@ -1,7 +1,7 @@
 -- Supabase Dental Clinic — Clean Migration (drops & recreates)
 -- Run this in Supabase Dashboard → SQL Editor
--- Project: azejzqoobxknnsmerprs
--- anon key: sb_publishable_BZ6q0ul_ulA479o0KRa7Cw_RZRPVPuB
+-- Project: yjfuxoxptioddwudouqw
+-- anon key: sb_publishable_KBo8dyeQB8QPZaQpT-eBNA_0q53P7Wg
 
 -- -------------------------------------------------------
 -- STEP 1: Drop existing tables (if any) in correct order

@@ -6,7 +6,7 @@
 <title>Dr. Aqsa Tariq's Dental Clinic — Gulshan-e-Ravi, Lahore</title>
 <meta name="description" content="Gentle, modern dental care at Dr. Aqsa Tariq's Dental Clinic, Moon Market Road, E Block, Gulshan-e-Ravi, Lahore 54000. Teeth whitening, root canal, dental implants, braces and more. Call 0323 5710575. Open daily from 4 PM." />
 <script src="https://cdn.tailwindcss.com"></script>
-<script>window.DENTAL_CONFIG = { url: 'https://azejzqoobxknnsmerprs.supabase.co', key: 'sb_publishable_BZ6q0ul_ulA479o0KRa7Cw_RZRPVPuB' };</script>
+<script>window.DENTAL_CONFIG = { url: 'https://yjfuxoxptioddwudouqw.supabase.co', key: 'sb_publishable_KBo8dyeQB8QPZaQpT-eBNA_0q53P7Wg' };</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -118,6 +118,12 @@ tailwind.config = {
           <svg class="w-4 h-4 text-mintDark" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.5 2.9 3.7 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.2 2.2z"/></svg>
         </span>
       </a>
+
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="md:hidden w-10 h-10 rounded-full bg-mist flex items-center justify-center">
+        <svg class="w-5 h-5 text-navy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+
       <!-- Login / Sign Up Button -->
       <button id="loginBtn" class="btn-lift group inline-flex items-center gap-2 bg-navy text-white text-sm font-semibold rounded-full pl-5 pr-1.5 py-1.5 shadow-soft">
         Login / Sign Up
@@ -127,35 +133,31 @@ tailwind.config = {
       </button>
       
       <!-- Login Modal -->
-      <div id="loginModal" class="fixed inset-0 bg-black/40 backdrop-blur-zxl hidden z-50">
+      <div id="loginModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden z-50">
         <div class="relative top-20 left-1/2 -translate-x-1/2 bg-white rounded-3xl p-6 w-full max-w-md shadow-2xl">
-          <button id="closeModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold">×</button>
+          <button id="closeModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold">&times;</button>
           <div class="space-y-6">
             <!-- Google Tab -->
             <div id="googleTab" class="tab-panel block">
               <h3 class="font-bold text-lg text-navy mb-4">Sign in with Google</h3>
               <p class="text-steel text-sm mb-6">Connect your Google account to book appointments</p>
-              <button id="googleSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">
+              <button id="googleSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#fff" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" opacity=".7"/><path fill="#fff" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.44 1.18 4.93l3.66-2.84z" opacity=".5"/><path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" opacity=".8"/></svg>
                 Continue with Google
-                <svg class="w-4 h-4 inline-block align-middle" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M22.127 11.9l-7.193-5.047-4.438 3.818 1.185 7.708 7.898-6.018 1.61 7.705H9.737zM6.137 15.75h5.957l-.923-4.713 4.167 1.25L6.137 15.75zM6.137 7.5h5.957L12 2.408 5.957 7.5H6.137zM12 3.5c3.309 0 5.968 1.468 7.678 3.76L24 11.058l-4.77-2.855L12 3.5zM12 4.483c2.19 0 4.034 1.257 5.303 2.883L21 11.058L12 4.483zM5.603 11.9l7.194 5.047 4.438-3.818-1.185-7.708-7.897 6.019-1.61-7.705H14.263zM17.863 15.75h-5.957l.923 4.713-4.167-1.25L17.863 15.75zM17.863 7.5h-5.957L12 2.408 16.043 7.5H17.863z"/>
-                </svg>
               </button>
             </div>
             
             <!-- Email/Password Tab -->
             <div id="emailTab" class="tab-panel hidden">
-              <h3 class="font-bold text-lg text-navy mb-4">Email & Password</h3>
+              <h3 class="font-bold text-lg text-navy mb-4">Email &amp; Password</h3>
               <p class="text-steel text-sm mb-6">Enter your email and password to sign in</p>
               <div class="space-y-4">
                 <input type="email" id="emailInput" placeholder="Email" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mint/60 focus:border-transparent transition">
                 <input type="password" id="passInput" placeholder="Password" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mint/60 focus:border-transparent transition">
-                <button id="emailSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">
-                  Sign In
-                </svg>
-              </button>
-              <p class="text-xs text-steel text-center">Don't have an account? <a href="#" id="showSignUp" class="font-medium text-mint underline">Sign up</a></p>
-              <p class="text-xs text-steel text-center">Forgot <a href="#" id="showForgot" class="font-medium text-mint underline">password?</a></p>
+                <button id="emailSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">Sign In</button>
+                <p class="text-xs text-steel text-center">Don't have an account? <a href="#" id="showSignUp" class="font-medium text-mintDark underline">Sign up</a></p>
+                <p class="text-xs text-steel text-center">Forgot <a href="#" id="showForgot" class="font-medium text-mintDark underline">password?</a></p>
+              </div>
             </div>
             
             <!-- Phone OTP Tab -->
@@ -164,10 +166,15 @@ tailwind.config = {
               <p class="text-steel text-sm mb-6">Enter your phone number to receive a verification code</p>
               <div class="space-y-4">
                 <input type="tel" id="phoneInput" placeholder="+92 300 1234567" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mint/60 focus:border-transparent transition">
-                <button id="phoneSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">
-                  Send OTP
-                </svg>
-              </button>
+                <button id="phoneSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">Send OTP</button>
+              </div>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="flex gap-2 border-t border-gray-100 pt-4">
+              <button data-tab="googleTab" class="tab-btn flex-1 text-xs font-semibold py-2 px-3 rounded-lg bg-navy/10 text-navy hover:bg-navy/20 transition">Google</button>
+              <button data-tab="emailTab" class="tab-btn flex-1 text-xs font-semibold py-2 px-3 rounded-lg bg-navy/10 text-navy hover:bg-navy/20 transition">Email</button>
+              <button data-tab="phoneTab" class="tab-btn flex-1 text-xs font-semibold py-2 px-3 rounded-lg bg-navy/10 text-navy hover:bg-navy/20 transition">Phone</button>
             </div>
           </div>
           <div class="flex justify-end pt-4">
@@ -182,8 +189,8 @@ tailwind.config = {
         <div class="w-10 h-10 rounded-full bg-mint flex items-center justify-center">
           <span id="userInitials" class="text-navy font-bold text-sm">U</span>
         </div>
-        <span id="userName" class="font-medium text-white"></span>
-        <button id="logoutBtn" class="text-sm text-navy hover:text-mantra">Logout</button>
+        <span id="userName" class="font-medium text-navy text-sm"></span>
+        <button id="logoutBtn" class="text-sm text-steel hover:text-navy font-medium transition-colors">Logout</button>
       </div>
     </div>
   </nav>
@@ -255,7 +262,7 @@ tailwind.config = {
               </span>
               <p class="font-bold text-xs">5.0</p>
             </div>
-            <p class="text-[11px] text-steel">Ratings · 32 Reviews</p>
+            <p class="text-[11px] text-steel">Ratings &middot; 32 Reviews</p>
           </div>
         </div>
       </div>
@@ -263,7 +270,7 @@ tailwind.config = {
 
     <!-- Right / text -->
     <div class="lg:order-2 order-1 text-center lg:text-left mt-16 lg:mt-0 lg:pl-4">
-      <span class="tag inline-block text-xs font-bold text-mintDark bg-mint/15 rounded-full px-4 py-1.5 mb-6">GENTLE CARE · CONFIDENT SMILES</span>
+      <span class="tag inline-block text-xs font-bold text-mintDark bg-mint/15 rounded-full px-4 py-1.5 mb-6">GENTLE CARE &middot; CONFIDENT SMILES</span>
       <h1 class="headline font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl">
         Your Smile,
         <span class="block">Our Priority.</span>
@@ -297,7 +304,7 @@ tailwind.config = {
     <div class="text-center max-w-2xl mx-auto mb-14">
       <span class="tag inline-block text-xs font-bold text-mintDark bg-mint/15 rounded-full px-4 py-1.5 mb-5">OUR SERVICES</span>
       <h2 class="headline font-extrabold uppercase text-3xl sm:text-4xl md:text-5xl">Care For Every Smile</h2>
-      <p class="mt-4 text-steel leading-relaxed">Comprehensive treatments delivered with precision, modern technology and a gentle touch — all under one roof.</p>
+      <p class="mt-4 text-steel leading-relaxed">Comprehensive treatments delivered with precision, modern technology and a gentle touch &mdash; all under one roof.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
@@ -373,7 +380,7 @@ tailwind.config = {
         For over 15 years, Dr. Aqsa Tariq has helped families across Lahore achieve healthy, confident smiles. Our clinic combines gentle, patient-first care with the latest in modern dental technology.
       </p>
       <p class="mt-4 text-steel leading-relaxed">
-        From routine check-ups to complete smile makeovers, every treatment is tailored to you — in a clean, comfortable and welcoming environment.
+        From routine check-ups to complete smile makeovers, every treatment is tailored to you &mdash; in a clean, comfortable and welcoming environment.
       </p>
       <div class="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <a href="#visit" class="btn-lift inline-flex items-center gap-3 bg-navy text-white font-semibold rounded-full pl-6 pr-2 py-3 shadow-soft">
@@ -429,7 +436,7 @@ tailwind.config = {
           <span class="tag inline-block text-xs font-bold text-mint bg-mint/15 rounded-full px-4 py-1.5 mb-5">BOOK APPOINTMENT</span>
           <h2 class="headline font-extrabold uppercase text-3xl sm:text-4xl md:text-5xl text-white">Ready For A Healthier Smile?</h2>
           <p class="mt-5 text-sky-100/80 leading-relaxed">
-            Visit us at Moon Market Road, E Block, Gulshan-e-Ravi, Lahore 54000 — open daily from 4:00 PM. Call ahead and we'll have everything ready for your arrival.
+            Visit us at Moon Market Road, E Block, Gulshan-e-Ravi, Lahore 54000 &mdash; open daily from 4:00 PM. Call ahead and we'll have everything ready for your arrival.
           </p>
 
           <div class="mt-8 space-y-4">
@@ -455,7 +462,7 @@ tailwind.config = {
             </a>
             <div class="flex items-center gap-4 bg-white/10 rounded-2xl p-4">
               <span class="w-12 h-12 rounded-xl bg-mint flex items-center justify-center shrink-0">
-                <svg class="w-6 h-6 text-navy" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 2c2.4 0 4.6 1 6.2 2.6L7.5 19.1c-2-1.5-3.3-3.9-3.3-6.6 0-4 3-7.3 6.8-7.9zm7 7.1c-.3 2.5-1.8 4.7-4 5.9l-7.1-.7L20.5 13a8 8 0 01-1.5-3.9zm-6.8 8.8c-2.4 0-4.6-1-6.2-2.6l10.7-10.5c2 1.5 3.3 3.9 3.3 6.6 0 4-3 7.3-6.8 7.9z"/></svg>
+                <svg class="w-6 h-6 text-navy" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
               </span>
               <div class="flex-1">
                 <p class="font-semibold text-white">Opening Hours</p>
@@ -525,7 +532,7 @@ tailwind.config = {
           <p class="text-xs">Dental Clinic</p>
         </div>
       </div>
-      <p class="mt-4 text-sm leading-relaxed">Gentle care, confident smiles — modern dentistry at the heart of Gulshan-e-Ravi, Lahore.</p>
+      <p class="mt-4 text-sm leading-relaxed">Gentle care, confident smiles &mdash; modern dentistry at the heart of Gulshan-e-Ravi, Lahore.</p>
     </div>
 
     <div>
@@ -564,24 +571,26 @@ tailwind.config = {
     </div>
   </div>
 
-<div class="max-w-6xl mx-auto px-6 mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+  <div class="max-w-6xl mx-auto px-6 mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
     <p>&copy; 2026 Dr. Aqsa Tariq's Dental Clinic. All rights reserved.</p>
-    <p>Gentle Care · Confident Smiles</p>
-    <a href="#" id="adminLoginLink" class="text-xs text-mantra hover:text-navy transition-colors admin-link">Admin</a>
-</div>
+    <p>Gentle Care &middot; Confident Smiles</p>
+    <a href="#" id="adminLoginLink" class="text-xs text-sky-100/40 hover:text-mint transition-colors">Admin</a>
+  </div>
 </footer>
 
 <script>
   // Mobile menu toggle
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  }
   document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-// Scroll-triggered number counters
+  // Scroll-triggered number counters
   const counters = document.querySelectorAll('[data-count]');
   const animateCount = (el) => {
-    const target = +elDataset.count;
+    const target = +el.dataset.count;
     const dur = 1400;
     const start = performance.now();
     const step = (now) => {
@@ -599,19 +608,26 @@ tailwind.config = {
   }, { threshold: 0.5 });
   counters.forEach(c => io.observe(c));
 
+  // --- Tab switching for login modal ---
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.dataset.tab;
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+    });
+  });
+
   // --- LOGIN MODAL + SUPABASE AUTH ---
   const loginBtn = document.getElementById('loginBtn');
   const loginModal = document.getElementById('loginModal');
   const closeModal = document.getElementById('closeModal');
   const closeAuth = document.getElementById('closeAuth');
-  const googleTab = document.getElementById('googleTab');
-  const emailTab = document.getElementById('emailTab');
-  const phoneTab = document.getElementById('phoneTab');
   const googleSignIn = document.getElementById('googleSignIn');
   const emailSignIn = document.getElementById('emailSignIn');
   const showSignUp = document.getElementById('showSignUp');
   const showForgot = document.getElementById('showForgot');
   const loginSubmit = document.getElementById('loginSubmit');
+  const phoneSignInBtn = document.getElementById('phoneSignIn');
 
   const sbConfig = window.DENTAL_CONFIG;
   const sbHeaders = { 'apikey': sbConfig.key, 'Authorization': 'Bearer ' + sbConfig.key, 'Content-Type': 'application/json' };
@@ -625,13 +641,11 @@ tailwind.config = {
   async function ensurePatientRow(user) {
     const patientId = user.id;
     try {
-      // Check if patient exists
       const check = await fetch(sbConfig.url + '/rest/v1/patients?user_id=eq.' + patientId + '&select=id,full_name,email,phone', {
         headers: sbHeaders
       });
       const rows = await check.json();
       if (!Array.isArray(rows) || rows.length === 0) {
-        // Create patient row
         await fetch(sbConfig.url + '/rest/v1/patients', {
           method: 'POST',
           headers: sbHeaders,
@@ -656,6 +670,7 @@ tailwind.config = {
     document.getElementById('userName').textContent = name;
     loginModal.classList.add('hidden');
     document.getElementById('loggedInState').classList.remove('hidden');
+    document.getElementById('loggedInState').style.display = 'flex';
     loginBtn.classList.add('hidden');
   }
 
@@ -675,22 +690,14 @@ tailwind.config = {
     } catch (_) { clearSession(); }
   }
 
-  // Open modal
+  // Open / close modal
   loginBtn.addEventListener('click', () => loginModal.classList.remove('hidden'));
   closeModal.addEventListener('click', () => loginModal.classList.add('hidden'));
   closeAuth.addEventListener('click', () => loginModal.classList.add('hidden'));
-
-  // Tab switching — first open the chosen tab
-  function showOnlyTab(visibleTab) {
-    [googleTab, emailTab, phoneTab].forEach(t => t.classList.add('hidden'));
-    visibleTab.classList.remove('hidden');
-  }
-  googleTab.classList.remove('hidden');
-  googleSignIn.addEventListener('click', () => showOnlyTab(googleTab));
-  emailSignIn.addEventListener('click', () => showOnlyTab(emailTab));
+  loginModal.addEventListener('click', (e) => { if (e.target === loginModal) loginModal.classList.add('hidden'); });
 
   // --- GOOGLE SIGN IN ---
-  async function googleSignInAction() {
+  googleSignIn.addEventListener('click', async () => {
     try {
       const res = await fetch(sbConfig.url + '/auth/v1/authorize?provider=google', {
         headers: { 'apikey': sbConfig.key, 'Authorization': 'Bearer ' + sbConfig.key }
@@ -704,11 +711,10 @@ tailwind.config = {
     } catch (e) {
       alert('Google sign-in failed: ' + e.message);
     }
-  }
-  googleSignIn.addEventListener('click', googleSignInAction);
+  });
 
   // --- EMAIL + PASSWORD ---
-  let emailMode = 'signin'; // 'signin' or 'signup'
+  let emailMode = 'signin';
 
   async function emailAuthAction() {
     const email = document.getElementById('emailInput').value.trim();
@@ -734,7 +740,7 @@ tailwind.config = {
         } else {
           alert('Signup successful! Check your email to confirm, then sign in.');
           emailMode = 'signin';
-          document.getElementById('emailSignIn').textContent = 'Sign In';
+          emailSignIn.textContent = 'Sign In';
         }
       } else {
         setSession({ access_token: data.access_token, refresh_token: data.refresh_token, user: data.user });
@@ -749,8 +755,7 @@ tailwind.config = {
   showSignUp.addEventListener('click', (e) => {
     e.preventDefault();
     emailMode = 'signup';
-    document.getElementById('emailSignIn').textContent = 'Sign Up';
-    showOnlyTab(emailTab);
+    emailSignIn.textContent = 'Sign Up';
   });
   showForgot.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -781,7 +786,7 @@ tailwind.config = {
         const data = await res.json();
         if (!res.ok) { alert((data.msg || data.message || 'OTP failed') + ' — Enable Phone provider in Supabase.'); return; }
         phoneStep = 'verify';
-        document.getElementById('phoneSignIn').textContent = 'Verify OTP';
+        phoneSignInBtn.textContent = 'Verify OTP';
         alert('OTP sent to ' + phone);
       } catch (e) { alert('Phone error: ' + e.message); }
     } else {
@@ -798,34 +803,34 @@ tailwind.config = {
         setSession({ access_token: data.access_token, refresh_token: data.refresh_token, user: data.user });
         await showLoggedIn(data.user);
         phoneStep = 'enter';
-        document.getElementById('phoneSignIn').textContent = 'Send OTP';
+        phoneSignInBtn.textContent = 'Send OTP';
       } catch (e) { alert('Verify error: ' + e.message); }
     }
   }
-  phoneSignIn.addEventListener('click', phoneAuthAction);
+  phoneSignInBtn.addEventListener('click', phoneAuthAction);
 
-  // Legacy Login button (still works as email sign-in shortcut)
+  // Legacy Login button (works as email sign-in shortcut)
   loginSubmit.addEventListener('click', emailAuthAction);
 
   // --- LOGOUT ---
   document.getElementById('logoutBtn').addEventListener('click', () => {
     clearSession();
     document.getElementById('loggedInState').classList.add('hidden');
+    document.getElementById('loggedInState').style.display = '';
     loginBtn.classList.remove('hidden');
-    loginModal.classList.remove('hidden');
   });
 
   // Restore session on page load
   tryRestoreSession();
 
-  // Admin panel link (must exist in DOM at load time)
+  // --- ADMIN PANEL ---
   const adminLoginLink = document.getElementById('adminLoginLink');
   const adminLoginModal = document.createElement('div');
   adminLoginModal.classList.add('hidden');
   adminLoginModal.innerHTML = `
     <div class="fixed inset-0 bg-black/50 z-50">
       <div class="relative top-20 left-1/2 -translate-x-1/2 bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
-        <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" id="adminCloseModal">×</button>
+        <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" id="adminCloseModal">&times;</button>
         <h3 class="font-bold text-lg text-navy mb-4">Admin Login</h3>
         <p class="text-steel text-sm mb-6">Enter admin credentials</p>
         <div class="space-y-4">
@@ -834,7 +839,7 @@ tailwind.config = {
           <button id="adminSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">Login as Admin</button>
         </div>
         <p id="adminStatus" class="text-xs text-steel text-center mt-3"></p>
-        <p class="text-xs text-steel text-center mt-2">First time? Create the admin user manually in <a href="https://supabase.com/dashboard/project/azejzqoobxknnsmerprs/auth/users" target="_blank" class="font-medium text-mintDark underline">Supabase Auth → Users</a> (one-time only).</p>
+        <p class="text-xs text-steel text-center mt-2">First time? Create the admin user manually in <a href="https://supabase.com/dashboard/project/yjfuxoxptioddwudouqw/auth/users" target="_blank" class="font-medium text-mintDark underline">Supabase Auth &rarr; Users</a> (one-time only).</p>
       </div>
     </div>
   `;
@@ -890,9 +895,11 @@ tailwind.config = {
       }
     });
   }
+
+  // --- BOOKING FORM ---
   const config = window.DENTAL_CONFIG;
   const bookingForm = document.getElementById('bookingForm');
-  const status = document.getElementById('formStatus');
+  const formStatus = document.getElementById('formStatus');
   const submitBtn = document.getElementById('bfSubmit');
   bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -900,7 +907,7 @@ tailwind.config = {
     const phone = document.getElementById('bfPhone').value.trim();
     const date = document.getElementById('bfDate').value;
     const service = document.getElementById('bfService').value;
-    status.classList.add('hidden');
+    formStatus.classList.add('hidden');
     submitBtn.disabled = true;
     submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
     try {
@@ -925,12 +932,12 @@ tailwind.config = {
         try { const j = await res.json(); if (j.message) detail = j.message; } catch (_) {}
         throw new Error(detail);
       }
-      status.textContent = 'Thank you, ' + name.split(' ')[0] + '! Your appointment request has been received. We will confirm shortly.';
-      status.className = 'mt-4 rounded-xl px-4 py-3 text-sm font-semibold bg-mint/15 text-mintDark';
+      formStatus.textContent = 'Thank you, ' + name.split(' ')[0] + '! Your appointment request has been received. We will confirm shortly.';
+      formStatus.className = 'mt-4 rounded-xl px-4 py-3 text-sm font-semibold bg-mint/15 text-mintDark';
       bookingForm.reset();
     } catch (err) {
-      status.textContent = 'Something went wrong (' + (err.message || 'unable to save') + '). Please call us at 0323 5710575.';
-      status.className = 'mt-4 rounded-xl px-4 py-3 text-sm font-semibold bg-red-100 text-red-700';
+      formStatus.textContent = 'Something went wrong (' + (err.message || 'unable to save') + '). Please call us at 0323 5710575.';
+      formStatus.className = 'mt-4 rounded-xl px-4 py-3 text-sm font-semibold bg-red-100 text-red-700';
     } finally {
       submitBtn.disabled = false;
       submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
