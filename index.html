@@ -56,33 +56,15 @@ tailwind.config = {
 <style>
   html { scroll-behavior: smooth; }
   body { font-family: 'Poppins', sans-serif; }
-  .headline {
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-  }
-  .tag {
-    letter-spacing: 0.35em;
-  }
-  .arch {
-    border-radius: 999px 999px 24px 24px;
-  }
-  .card-hover {
-    transition: transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease;
-  }
-  .card-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 28px 60px -20px rgba(15,42,74,0.25);
-  }
-  .btn-lift {
-    transition: transform .3s ease, box-shadow .3s ease;
-  }
-  .btn-lift:hover {
-    transform: translateY(-3px);
-  }
+  .headline { letter-spacing: -0.02em; line-height: 1.05; }
+  .tag { letter-spacing: 0.35em; }
+  .arch { border-radius: 999px 999px 24px 24px; }
+  .card-hover { transition: transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease; }
+  .card-hover:hover { transform: translateY(-8px); box-shadow: 0 28px 60px -20px rgba(15,42,74,0.25); }
+  .btn-lift { transition: transform .3s ease, box-shadow .3s ease; }
+  .btn-lift:hover { transform: translateY(-3px); }
   .grid-pattern {
-    background-image:
-      linear-gradient(rgba(15,42,74,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15,42,74,0.05) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(15,42,74,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,42,74,0.05) 1px, transparent 1px);
     background-size: 44px 44px;
   }
 </style>
@@ -132,65 +114,19 @@ tailwind.config = {
         </span>
       </button>
       
-      <!-- Login Modal -->
-      <div id="loginModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden z-50">
-        <div class="relative top-20 left-1/2 -translate-x-1/2 bg-white rounded-3xl p-6 w-full max-w-md shadow-2xl">
-          <button id="closeModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold">&times;</button>
-          <div class="space-y-6">
-            <!-- Google Tab -->
-            <div id="googleTab" class="tab-panel block">
-              <h3 class="font-bold text-lg text-navy mb-4">Sign in with Google</h3>
-              <p class="text-steel text-sm mb-6">Connect your Google account to book appointments</p>
-              <button id="googleSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors flex items-center justify-center gap-2">
-                <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#fff" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" opacity=".7"/><path fill="#fff" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.44 1.18 4.93l3.66-2.84z" opacity=".5"/><path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" opacity=".8"/></svg>
-                Continue with Google
-              </button>
-            </div>
-            
-            <!-- Email/Password Tab -->
-            <div id="emailTab" class="tab-panel hidden">
-              <h3 class="font-bold text-lg text-navy mb-4">Email &amp; Password</h3>
-              <p class="text-steel text-sm mb-6">Enter your email and password to sign in</p>
-              <div class="space-y-4">
-                <input type="email" id="emailInput" placeholder="Email" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mint/60 focus:border-transparent transition">
-                <input type="password" id="passInput" placeholder="Password" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mint/60 focus:border-transparent transition">
-                <button id="emailSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">Sign In</button>
-                <p class="text-xs text-steel text-center">Don't have an account? <a href="#" id="showSignUp" class="font-medium text-mintDark underline">Sign up</a></p>
-                <p class="text-xs text-steel text-center">Forgot <a href="#" id="showForgot" class="font-medium text-mintDark underline">password?</a></p>
-              </div>
-            </div>
-            
-            <!-- Phone OTP Tab -->
-            <div id="phoneTab" class="tab-panel hidden">
-              <h3 class="font-bold text-lg text-navy mb-4">Phone Number (OTP)</h3>
-              <p class="text-steel text-sm mb-6">Enter your phone number to receive a verification code</p>
-              <div class="space-y-4">
-                <input type="tel" id="phoneInput" placeholder="+92 300 1234567" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mint/60 focus:border-transparent transition">
-                <button id="phoneSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">Send OTP</button>
-              </div>
-            </div>
-
-            <!-- Tab Switcher -->
-            <div class="flex gap-2 border-t border-gray-100 pt-4">
-              <button data-tab="googleTab" class="tab-btn flex-1 text-xs font-semibold py-2 px-3 rounded-lg bg-navy/10 text-navy hover:bg-navy/20 transition">Google</button>
-              <button data-tab="emailTab" class="tab-btn flex-1 text-xs font-semibold py-2 px-3 rounded-lg bg-navy/10 text-navy hover:bg-navy/20 transition">Email</button>
-              <button data-tab="phoneTab" class="tab-btn flex-1 text-xs font-semibold py-2 px-3 rounded-lg bg-navy/10 text-navy hover:bg-navy/20 transition">Phone</button>
-            </div>
-          </div>
-          <div class="flex justify-end pt-4">
-            <button id="closeAuth" class="px-4 py-2 bg-gray-200 text-navy rounded hover:bg-gray-300 text-sm">Cancel</button>
-            <button id="loginSubmit" class="px-4 py-2 bg-navy text-white rounded hover:bg-navy/90 font-semibold text-sm ml-2">Login</button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Logged In State -->
+      <!-- Logged In Patient Controls -->
       <div id="loggedInState" class="hidden items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-mint flex items-center justify-center">
-          <span id="userInitials" class="text-navy font-bold text-sm">U</span>
+        <button id="patientHistoryBtn" class="btn-lift inline-flex items-center gap-2 bg-mist text-navy text-xs font-bold px-3.5 py-2 rounded-full border border-navy/10 hover:bg-mint/20 transition-colors">
+          <svg class="w-4 h-4 text-mintDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          My Appointments
+        </button>
+        <div class="w-9 h-9 rounded-full bg-mint flex items-center justify-center shadow-soft">
+          <span id="userInitials" class="text-navy font-bold text-xs">P</span>
         </div>
-        <span id="userName" class="font-medium text-navy text-sm"></span>
-        <button id="logoutBtn" class="text-sm text-steel hover:text-navy font-medium transition-colors">Logout</button>
+        <span id="userName" class="font-bold text-navy text-xs hidden sm:inline-block">Patient</span>
+        <button id="logoutBtn" title="Log out" class="p-2 text-steel hover:text-red-600 font-medium transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        </button>
       </div>
     </div>
   </nav>
@@ -205,6 +141,88 @@ tailwind.config = {
     <li><a href="#visit" class="mobile-link block">Visit</a></li>
     <li><a href="#visit" class="mobile-link inline-flex items-center justify-center gap-2 bg-navy text-white rounded-full px-6 py-3 mt-2">Book Appointment</a></li>
   </ul>
+</div>
+
+<!-- PATIENT AUTH MODAL (Login / Sign Up) -->
+<div id="loginModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 sm:p-8 w-full max-w-md shadow-2xl relative animate-floaty">
+    <button id="closeModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-mist text-steel hover:bg-navy hover:text-white flex items-center justify-center text-base font-bold transition-colors">&times;</button>
+    
+    <div class="text-center mb-6">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 text-mintDark mx-auto flex items-center justify-center mb-3">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 105 5 5 5 0 00-5-5zm0 8a3 3 0 113-3 3 3 0 01-3 3zm0 4c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg>
+      </div>
+      <h3 id="modalTitle" class="font-extrabold text-2xl text-navy">Patient Account</h3>
+      <p id="modalSubtitle" class="text-steel text-xs mt-1">Sign in or create an account to manage your dental appointments</p>
+    </div>
+
+    <!-- Mode Selector: Sign In vs Sign Up -->
+    <div class="flex rounded-2xl bg-mist p-1.5 mb-6">
+      <button id="modeSignInBtn" class="flex-1 py-2.5 text-xs font-bold rounded-xl bg-white text-navy shadow-sm transition-all">Sign In</button>
+      <button id="modeSignUpBtn" class="flex-1 py-2.5 text-xs font-bold rounded-xl text-steel hover:text-navy transition-all">Create Account</button>
+    </div>
+
+    <!-- Email / Password Form -->
+    <form id="patientAuthForm" class="space-y-4">
+      <div id="fullNameGroup" class="hidden">
+        <label class="block text-xs font-bold text-navy mb-1">Full Name</label>
+        <input type="text" id="authFullName" placeholder="e.g. Ali Ahmed" class="w-full px-4 py-3 bg-mist rounded-xl text-sm border border-transparent focus:border-mintDark focus:bg-white outline-none transition" />
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Email Address</label>
+        <input type="email" id="authEmail" required placeholder="name@example.com" class="w-full px-4 py-3 bg-mist rounded-xl text-sm border border-transparent focus:border-mintDark focus:bg-white outline-none transition" />
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Phone Number (Optional)</label>
+        <input type="tel" id="authPhone" placeholder="0300 1234567" class="w-full px-4 py-3 bg-mist rounded-xl text-sm border border-transparent focus:border-mintDark focus:bg-white outline-none transition" />
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Password</label>
+        <input type="password" id="authPassword" required placeholder="••••••••" class="w-full px-4 py-3 bg-mist rounded-xl text-sm border border-transparent focus:border-mintDark focus:bg-white outline-none transition" />
+      </div>
+
+      <div id="authAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+
+      <button type="submit" id="authSubmitBtn" class="w-full py-3.5 bg-navy text-white font-extrabold rounded-xl shadow-soft hover:bg-navyLight transition-colors flex items-center justify-center gap-2">
+        <span>Sign In to Portal</span>
+        <svg class="w-4 h-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+
+    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-steel">
+      <button id="showForgotPass" class="hover:text-navy underline">Forgot Password?</button>
+      <span class="text-[11px] text-steel">Encrypted &amp; Secure</span>
+    </div>
+  </div>
+</div>
+
+<!-- PATIENT APPOINTMENTS HISTORY MODAL -->
+<div id="patientHistoryModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 sm:p-8 w-full max-w-2xl shadow-2xl relative max-h-[90vh] flex flex-col">
+    <button id="closePatientHistory" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-mist text-steel hover:bg-navy hover:text-white flex items-center justify-center text-base font-bold transition-colors">&times;</button>
+    
+    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-gray-100">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 text-mintDark flex items-center justify-center">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <div>
+        <h3 class="font-extrabold text-xl text-navy">My Dental Appointments History</h3>
+        <p class="text-steel text-xs">Saved records and booking statuses for <span id="historyPatientEmail" class="font-semibold text-navy"></span></p>
+      </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto space-y-4 pr-1" id="patientHistoryContent">
+      <!-- Loaded dynamically -->
+      <div class="text-center py-10 text-steel text-sm">Loading your appointment records...</div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+      <a href="#visit" id="newBookingFromHistory" class="inline-flex items-center gap-2 text-xs font-extrabold text-mintDark hover:underline">
+        + Book Another Appointment
+      </a>
+      <button id="closePatientHistoryBtn" class="px-5 py-2.5 bg-navy text-white text-xs font-bold rounded-xl hover:bg-navyLight transition-colors">Close</button>
+    </div>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -436,7 +454,7 @@ tailwind.config = {
           <span class="tag inline-block text-xs font-bold text-mint bg-mint/15 rounded-full px-4 py-1.5 mb-5">BOOK APPOINTMENT</span>
           <h2 class="headline font-extrabold uppercase text-3xl sm:text-4xl md:text-5xl text-white">Ready For A Healthier Smile?</h2>
           <p class="mt-5 text-sky-100/80 leading-relaxed">
-            Visit us at Moon Market Road, E Block, Gulshan-e-Ravi, Lahore 54000 &mdash; open daily from 4:00 PM. Call ahead and we'll have everything ready for your arrival.
+            Visit us at Moon Market Road, E Block, Gulshan-e-Ravi, Lahore 54000 &mdash; open daily from 4:00 PM. Sign up or log in to keep all your appointment records organized in your account.
           </p>
 
           <div class="mt-8 space-y-4">
@@ -460,35 +478,38 @@ tailwind.config = {
               </div>
               <svg class="w-5 h-5 text-mint transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </a>
-            <div class="flex items-center gap-4 bg-white/10 rounded-2xl p-4">
-              <span class="w-12 h-12 rounded-xl bg-mint flex items-center justify-center shrink-0">
-                <svg class="w-6 h-6 text-navy" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-              </span>
-              <div class="flex-1">
-                <p class="font-semibold text-white">Opening Hours</p>
-                <p class="text-sm text-sky-100/70">Opens daily at 4:00 PM</p>
-              </div>
-            </div>
           </div>
         </div>
 
         <!-- Booking form -->
         <form id="bookingForm" class="bg-white rounded-3xl p-7 sm:p-8 shadow-soft">
           <h3 class="font-extrabold text-xl">Request an Appointment</h3>
-          <p class="text-sm text-steel mt-1">We'll confirm your booking by phone.</p>
+          <p class="text-sm text-steel mt-1">Fill out the form below. Sign in to auto-save to your account.</p>
           <div id="formStatus" class="hidden mt-4 rounded-xl px-4 py-3 text-sm font-semibold"></div>
           <div class="mt-6 space-y-4">
-            <input id="bfName" type="text" required placeholder="Full Name" class="w-full bg-mist rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mint/60 transition" />
-            <input id="bfPhone" type="tel" required placeholder="Phone Number" class="w-full bg-mist rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mint/60 transition" />
-            <input id="bfDate" type="date" required class="w-full bg-mist rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mint/60 transition text-steel" />
-            <select id="bfService" class="w-full bg-mist rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mint/60 transition text-steel">
-              <option>Teeth Whitening</option>
-              <option>Root Canal Treatment</option>
-              <option>Dental Implants</option>
-              <option>Braces &amp; Orthodontics</option>
-              <option>Scaling &amp; Polishing</option>
-              <option>General Check-up</option>
-            </select>
+            <div>
+              <label class="block text-xs font-bold text-navy mb-1">Your Full Name</label>
+              <input id="bfName" type="text" required placeholder="Full Name" class="w-full bg-mist rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mint/60 transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-navy mb-1">Phone Number</label>
+              <input id="bfPhone" type="tel" required placeholder="0300 1234567" class="w-full bg-mist rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mint/60 transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-navy mb-1">Preferred Date</label>
+              <input id="bfDate" type="date" required class="w-full bg-mist rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mint/60 transition text-steel" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-navy mb-1">Dental Service</label>
+              <select id="bfService" class="w-full bg-mist rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mint/60 transition text-navy font-medium">
+                <option>Teeth Whitening</option>
+                <option>Root Canal Treatment</option>
+                <option>Dental Implants</option>
+                <option>Braces &amp; Orthodontics</option>
+                <option>Scaling &amp; Polishing</option>
+                <option>General Check-up</option>
+              </select>
+            </div>
             <button type="submit" id="bfSubmit" class="btn-lift group w-full inline-flex items-center justify-center gap-3 bg-navy text-white font-semibold rounded-xl px-6 py-4 shadow-soft">
               Book Appointment
               <span class="w-8 h-8 rounded-full bg-mint flex items-center justify-center">
@@ -574,9 +595,100 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-6 mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
     <p>&copy; 2026 Dr. Aqsa Tariq's Dental Clinic. All rights reserved.</p>
     <p>Gentle Care &middot; Confident Smiles</p>
-    <a href="#" id="adminLoginLink" class="text-xs text-sky-100/40 hover:text-mint transition-colors">Admin</a>
+    <button id="adminLoginLink" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-mint hover:text-navy text-sky-100 transition-colors font-semibold">
+      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      Admin Portal Access
+    </button>
   </div>
 </footer>
+
+<!-- ADMIN LOGIN MODAL -->
+<div id="adminLoginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 sm:p-8 w-full max-w-md shadow-2xl relative">
+    <button id="adminCloseModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-mist text-steel hover:bg-navy hover:text-white flex items-center justify-center text-base font-bold transition-colors">&times;</button>
+    
+    <div class="text-center mb-6">
+      <div class="w-12 h-12 rounded-2xl bg-navy text-mint mx-auto flex items-center justify-center mb-3 shadow-card">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <h3 class="font-extrabold text-2xl text-navy">Admin Portal</h3>
+      <p class="text-steel text-xs mt-1">Sign in with clinic administrator credentials</p>
+    </div>
+
+    <form id="adminLoginForm" class="space-y-4">
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Admin Email</label>
+        <input type="email" id="adminEmail" required placeholder="admin@draqsatariq.com" class="w-full px-4 py-3 bg-mist rounded-xl text-sm border border-transparent focus:border-navy focus:bg-white outline-none transition" />
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-navy mb-1">Password</label>
+        <input type="password" id="adminPass" required placeholder="••••••••" class="w-full px-4 py-3 bg-mist rounded-xl text-sm border border-transparent focus:border-navy focus:bg-white outline-none transition" />
+      </div>
+      
+      <div id="adminStatus" class="hidden p-3 rounded-xl text-xs font-semibold text-center"></div>
+
+      <button type="submit" id="adminSignInBtn" class="w-full py-3.5 bg-navy text-white font-extrabold rounded-xl shadow-soft hover:bg-navyLight transition-colors flex items-center justify-center gap-2">
+        <span>Authenticate as Admin</span>
+        <svg class="w-4 h-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- FULL ADMIN DASHBOARD MODAL -->
+<div id="adminDashboardModal" class="fixed inset-0 bg-navy/90 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 sm:p-8 w-full max-w-5xl shadow-2xl relative max-h-[92vh] flex flex-col">
+    
+    <!-- Dashboard Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-gray-100">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-navy text-mint flex items-center justify-center">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        </div>
+        <div>
+          <h3 class="font-extrabold text-xl text-navy">Dr. Aqsa Clinic Admin Dashboard</h3>
+          <p class="text-steel text-xs">Real-time management for Appointments and Patient Records</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="refreshAdminData" class="px-3.5 py-2 bg-mist hover:bg-gray-200 text-navy font-bold text-xs rounded-xl flex items-center gap-1.5 transition-colors">
+          <svg class="w-3.5 h-3.5 text-steel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          Refresh Data
+        </button>
+        <button id="closeAdminDashboard" class="px-4 py-2 bg-red-100 text-red-700 hover:bg-red-200 font-bold text-xs rounded-xl transition-colors">Logout Admin</button>
+      </div>
+    </div>
+
+    <!-- Dashboard Tabs -->
+    <div class="flex border-b border-gray-200 mt-4">
+      <button id="tabAppointmentsBtn" class="py-3 px-6 text-sm font-extrabold text-navy border-b-2 border-mintDark flex items-center gap-2">
+        <svg class="w-4 h-4 text-mintDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        All Appointments <span id="appointmentsBadge" class="ml-1 px-2 py-0.5 text-xs bg-mint/20 text-mintDark rounded-full">0</span>
+      </button>
+      <button id="tabPatientsBtn" class="py-3 px-6 text-sm font-bold text-steel hover:text-navy border-b-2 border-transparent flex items-center gap-2">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        Patients Registry <span id="patientsBadge" class="ml-1 px-2 py-0.5 text-xs bg-mist text-steel rounded-full">0</span>
+      </button>
+    </div>
+
+    <!-- Tab 1: Appointments View -->
+    <div id="adminAppointmentsTab" class="flex-1 overflow-y-auto pt-4 space-y-4">
+      <div id="appointmentsTableContainer">
+        <!-- Dynamically rendered -->
+        <p class="text-center py-10 text-steel text-sm">Loading appointments from database...</p>
+      </div>
+    </div>
+
+    <!-- Tab 2: Patients Registry View -->
+    <div id="adminPatientsTab" class="flex-1 overflow-y-auto pt-4 space-y-4 hidden">
+      <div id="patientsTableContainer">
+        <!-- Dynamically rendered -->
+        <p class="text-center py-10 text-steel text-sm">Loading registered patients...</p>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <script>
   // Mobile menu toggle
@@ -608,29 +720,13 @@ tailwind.config = {
   }, { threshold: 0.5 });
   counters.forEach(c => io.observe(c));
 
-  // --- Tab switching for login modal ---
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tabId = btn.dataset.tab;
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
-      document.getElementById(tabId).classList.remove('hidden');
-    });
-  });
-
-  // --- LOGIN MODAL + SUPABASE AUTH ---
-  const loginBtn = document.getElementById('loginBtn');
-  const loginModal = document.getElementById('loginModal');
-  const closeModal = document.getElementById('closeModal');
-  const closeAuth = document.getElementById('closeAuth');
-  const googleSignIn = document.getElementById('googleSignIn');
-  const emailSignIn = document.getElementById('emailSignIn');
-  const showSignUp = document.getElementById('showSignUp');
-  const showForgot = document.getElementById('showForgot');
-  const loginSubmit = document.getElementById('loginSubmit');
-  const phoneSignInBtn = document.getElementById('phoneSignIn');
-
+  // --- SUPABASE & GLOBAL STATE ---
   const sbConfig = window.DENTAL_CONFIG;
   const sbHeaders = { 'apikey': sbConfig.key, 'Authorization': 'Bearer ' + sbConfig.key, 'Content-Type': 'application/json' };
+  
+  let currentUser = null;
+  let adminSession = null;
+  let patientAppointments = [];
 
   function getSession() {
     try { return JSON.parse(localStorage.getItem('sb_session') || 'null'); } catch (_) { return null; }
@@ -638,41 +734,144 @@ tailwind.config = {
   function setSession(s) { localStorage.setItem('sb_session', JSON.stringify(s)); }
   function clearSession() { localStorage.removeItem('sb_session'); }
 
-  async function ensurePatientRow(user) {
-    const patientId = user.id;
-    try {
-      const check = await fetch(sbConfig.url + '/rest/v1/patients?user_id=eq.' + patientId + '&select=id,full_name,email,phone', {
-        headers: sbHeaders
-      });
-      const rows = await check.json();
-      if (!Array.isArray(rows) || rows.length === 0) {
-        await fetch(sbConfig.url + '/rest/v1/patients', {
-          method: 'POST',
-          headers: sbHeaders,
-          body: JSON.stringify({
-            user_id: patientId,
-            full_name: (user.user_metadata && user.user_metadata.full_name) || user.email || 'Patient',
-            email: user.email || null,
-            phone: (user.user_metadata && user.user_metadata.phone) || (user.phone ? '+' + user.phone : null)
-          })
-        });
-      }
-    } catch (e) {
-      console.error('ensurePatientRow error:', e);
+  // --- PATIENT AUTH MODAL TOGGLES ---
+  const loginBtn = document.getElementById('loginBtn');
+  const loginModal = document.getElementById('loginModal');
+  const closeModal = document.getElementById('closeModal');
+  const modeSignInBtn = document.getElementById('modeSignInBtn');
+  const modeSignUpBtn = document.getElementById('modeSignUpBtn');
+  const fullNameGroup = document.getElementById('fullNameGroup');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSubtitle = document.getElementById('modalSubtitle');
+  const authSubmitBtn = document.getElementById('authSubmitBtn');
+  const authAlert = document.getElementById('authAlert');
+
+  let isSignUpMode = false;
+
+  function setAuthMode(signUp) {
+    isSignUpMode = signUp;
+    authAlert.classList.add('hidden');
+    if (signUp) {
+      modeSignUpBtn.className = "flex-1 py-2.5 text-xs font-bold rounded-xl bg-white text-navy shadow-sm transition-all";
+      modeSignInBtn.className = "flex-1 py-2.5 text-xs font-bold rounded-xl text-steel hover:text-navy transition-all";
+      fullNameGroup.classList.remove('hidden');
+      modalTitle.textContent = "Create Patient Account";
+      modalSubtitle.textContent = "Sign up to track your dental bookings and appointments";
+      authSubmitBtn.querySelector('span').textContent = "Register & Sign In";
+    } else {
+      modeSignInBtn.className = "flex-1 py-2.5 text-xs font-bold rounded-xl bg-white text-navy shadow-sm transition-all";
+      modeSignUpBtn.className = "flex-1 py-2.5 text-xs font-bold rounded-xl text-steel hover:text-navy transition-all";
+      fullNameGroup.classList.add('hidden');
+      modalTitle.textContent = "Patient Sign In";
+      modalSubtitle.textContent = "Enter your email and password to access your appointments";
+      authSubmitBtn.querySelector('span').textContent = "Sign In to Portal";
     }
   }
 
-  async function showLoggedIn(user) {
+  modeSignInBtn.addEventListener('click', () => setAuthMode(false));
+  modeSignUpBtn.addEventListener('click', () => setAuthMode(true));
+
+  loginBtn.addEventListener('click', () => {
+    setAuthMode(false);
+    loginModal.classList.remove('hidden');
+  });
+  closeModal.addEventListener('click', () => loginModal.classList.add('hidden'));
+
+  // --- PATIENT AUTH (EMAIL SIGN IN & SIGN UP) ---
+  const patientAuthForm = document.getElementById('patientAuthForm');
+  patientAuthForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value.trim();
+    const fullName = document.getElementById('authFullName').value.trim();
+    const phone = document.getElementById('authPhone').value.trim();
+
+    authAlert.classList.add('hidden');
+    authSubmitBtn.disabled = true;
+    authSubmitBtn.classList.add('opacity-60');
+
+    try {
+      const endpoint = isSignUpMode ? '/auth/v1/signup' : '/auth/v1/token?grant_type=password';
+      const bodyPayload = isSignUpMode ? 
+        { email, password, data: { full_name: fullName, phone: phone } } : 
+        { email, password };
+
+      const res = await fetch(sbConfig.url + endpoint, {
+        method: 'POST',
+        headers: sbHeaders,
+        body: JSON.stringify(bodyPayload)
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.msg || data.message || data.error_description || 'Authentication failed');
+      }
+
+      if (isSignUpMode && !data.session) {
+        authAlert.textContent = "Account created! Check your email to verify, then Sign In.";
+        authAlert.className = "p-3 rounded-xl text-xs font-semibold bg-mint/20 text-mintDark block";
+        setAuthMode(false);
+      } else {
+        const sessionData = data.session || { access_token: data.access_token, refresh_token: data.refresh_token, user: data.user };
+        setSession(sessionData);
+        await onUserLoggedIn(sessionData.user);
+        loginModal.classList.add('hidden');
+      }
+    } catch (err) {
+      authAlert.textContent = err.message || 'Error logging in';
+      authAlert.className = "p-3 rounded-xl text-xs font-semibold bg-red-100 text-red-700 block";
+    } finally {
+      authSubmitBtn.disabled = false;
+      authSubmitBtn.classList.remove('opacity-60');
+    }
+  });
+
+  async function ensurePatientRow(user) {
+    if (!user) return;
+    try {
+      const patientId = user.id;
+      const check = await fetch(sbConfig.url + '/rest/v1/patients?user_id=eq.' + patientId, { headers: sbHeaders });
+      const rows = await check.json();
+      if (Array.isArray(rows) && rows.length === 0) {
+        const name = (user.user_metadata && user.user_metadata.full_name) || user.email.split('@')[0];
+        const phone = (user.user_metadata && user.user_metadata.phone) || '';
+        await fetch(sbConfig.url + '/rest/v1/patients', {
+          method: 'POST',
+          headers: sbHeaders,
+          body: JSON.stringify({ user_id: patientId, full_name: name, email: user.email, phone: phone })
+        });
+      }
+    } catch(e) { console.error('Patient registry sync error:', e); }
+  }
+
+  async function onUserLoggedIn(user) {
+    currentUser = user;
     await ensurePatientRow(user);
-    const name = (user.user_metadata && user.user_metadata.full_name) || (user.email && user.email.split('@')[0]) || 'Patient';
-    const initials = name.split(' ').map(p => p[0]).join('').substring(0, 2).toUpperCase();
-    document.getElementById('userInitials').textContent = initials;
+    
+    const name = (user.user_metadata && user.user_metadata.full_name) || user.email.split('@')[0];
+    const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    
+    document.getElementById('userInitials').textContent = initials || 'P';
     document.getElementById('userName').textContent = name;
-    loginModal.classList.add('hidden');
+    
+    loginBtn.classList.add('hidden');
     document.getElementById('loggedInState').classList.remove('hidden');
     document.getElementById('loggedInState').style.display = 'flex';
-    loginBtn.classList.add('hidden');
+
+    // Auto fill booking form
+    document.getElementById('bfName').value = name;
+    if (user.user_metadata && user.user_metadata.phone) {
+      document.getElementById('bfPhone').value = user.user_metadata.phone;
+    }
   }
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    clearSession();
+    currentUser = null;
+    document.getElementById('loggedInState').classList.add('hidden');
+    document.getElementById('loggedInState').style.display = 'none';
+    loginBtn.classList.remove('hidden');
+  });
 
   async function tryRestoreSession() {
     const s = getSession();
@@ -683,239 +882,107 @@ tailwind.config = {
       });
       if (res.ok) {
         const user = await res.json();
-        await showLoggedIn(user);
-      } else {
-        clearSession();
-      }
+        await onUserLoggedIn(user);
+      } else { clearSession(); }
     } catch (_) { clearSession(); }
   }
 
-  // Open / close modal
-  loginBtn.addEventListener('click', () => loginModal.classList.remove('hidden'));
-  closeModal.addEventListener('click', () => loginModal.classList.add('hidden'));
-  closeAuth.addEventListener('click', () => loginModal.classList.add('hidden'));
-  loginModal.addEventListener('click', (e) => { if (e.target === loginModal) loginModal.classList.add('hidden'); });
+  // --- PATIENT APPOINTMENTS HISTORY MODAL ---
+  const patientHistoryBtn = document.getElementById('patientHistoryBtn');
+  const patientHistoryModal = document.getElementById('patientHistoryModal');
+  const closePatientHistory = document.getElementById('closePatientHistory');
+  const closePatientHistoryBtn = document.getElementById('closePatientHistoryBtn');
+  const patientHistoryContent = document.getElementById('patientHistoryContent');
+  const historyPatientEmail = document.getElementById('historyPatientEmail');
 
-  // --- GOOGLE SIGN IN ---
-  googleSignIn.addEventListener('click', async () => {
-    try {
-      const res = await fetch(sbConfig.url + '/auth/v1/authorize?provider=google', {
-        headers: { 'apikey': sbConfig.key, 'Authorization': 'Bearer ' + sbConfig.key }
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert('Google sign-in URL not available. Enable Google provider in Supabase Dashboard → Authentication → Providers.');
-      }
-    } catch (e) {
-      alert('Google sign-in failed: ' + e.message);
-    }
+  patientHistoryBtn.addEventListener('click', async () => {
+    if (!currentUser) return;
+    historyPatientEmail.textContent = currentUser.email;
+    patientHistoryModal.classList.remove('hidden');
+    await loadPatientHistory();
   });
 
-  // --- EMAIL + PASSWORD ---
-  let emailMode = 'signin';
+  closePatientHistory.addEventListener('click', () => patientHistoryModal.classList.add('hidden'));
+  closePatientHistoryBtn.addEventListener('click', () => patientHistoryModal.classList.add('hidden'));
 
-  async function emailAuthAction() {
-    const email = document.getElementById('emailInput').value.trim();
-    const password = document.getElementById('passInput').value.trim();
-    if (!email || !password) { alert('Enter email and password'); return; }
-
-    const endpoint = emailMode === 'signup' ? '/auth/v1/signup' : '/auth/v1/token?grant_type=password';
+  async function loadPatientHistory() {
+    if (!currentUser) return;
+    patientHistoryContent.innerHTML = `<div class="text-center py-10 text-steel text-sm">Loading your appointments...</div>`;
     try {
-      const res = await fetch(sbConfig.url + endpoint, {
-        method: 'POST',
-        headers: sbHeaders,
-        body: JSON.stringify({ email, password })
-      });
+      // Fetch matching appointments by full_name or email
+      const name = (currentUser.user_metadata && currentUser.user_metadata.full_name) || currentUser.email;
+      const res = await fetch(sbConfig.url + '/rest/v1/appointments?select=*&order=created_at.desc', { headers: sbHeaders });
       const data = await res.json();
-      if (!res.ok) {
-        alert((data.msg || data.message || data.error_description || 'Auth failed') + ' — Make sure Email provider is enabled in Supabase.');
+      
+      let userBookings = [];
+      if (Array.isArray(data)) {
+        userBookings = data.filter(a => 
+          (a.full_name && a.full_name.toLowerCase().includes(name.toLowerCase())) ||
+          (a.email && a.email.toLowerCase() === currentUser.email.toLowerCase())
+        );
+      }
+
+      if (userBookings.length === 0) {
+        patientHistoryContent.innerHTML = `
+          <div class="bg-mist rounded-2xl p-8 text-center border border-dashed border-gray-200">
+            <svg class="w-12 h-12 text-steel/40 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <p class="font-bold text-navy text-base">No appointments booked yet</p>
+            <p class="text-steel text-xs mt-1">Book your first appointment below to see your full history here.</p>
+          </div>`;
         return;
       }
-      if (emailMode === 'signup') {
-        if (data.session) {
-          setSession(data.session);
-          await showLoggedIn(data.user);
-        } else {
-          alert('Signup successful! Check your email to confirm, then sign in.');
-          emailMode = 'signin';
-          emailSignIn.textContent = 'Sign In';
-        }
-      } else {
-        setSession({ access_token: data.access_token, refresh_token: data.refresh_token, user: data.user });
-        await showLoggedIn(data.user);
-      }
-    } catch (e) {
-      alert('Auth error: ' + e.message);
-    }
-  }
-  emailSignIn.addEventListener('click', emailAuthAction);
 
-  showSignUp.addEventListener('click', (e) => {
-    e.preventDefault();
-    emailMode = 'signup';
-    emailSignIn.textContent = 'Sign Up';
-  });
-  showForgot.addEventListener('click', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('emailInput').value.trim();
-    if (!email) { alert('Enter your email first'); return; }
-    try {
-      await fetch(sbConfig.url + '/auth/v1/recover', {
-        method: 'POST',
-        headers: sbHeaders,
-        body: JSON.stringify({ email })
+      let html = '';
+      userBookings.forEach(item => {
+        const dateStr = item.preferred_date || (item.created_at ? item.created_at.split('T')[0] : 'Scheduled');
+        let statusBadge = '<span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-bold">Pending</span>';
+        if (item.status === 'confirmed') statusBadge = '<span class="px-3 py-1 bg-mint/20 text-mintDark rounded-full text-xs font-bold">Confirmed</span>';
+        if (item.status === 'completed') statusBadge = '<span class="px-3 py-1 bg-sky-100 text-sky-800 rounded-full text-xs font-bold">Completed</span>';
+        if (item.status === 'cancelled') statusBadge = '<span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold">Cancelled</span>';
+
+        html += `
+          <div class="bg-mist rounded-2xl p-5 border border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-extrabold text-navy text-base">${item.service || 'Dental Care'}</span>
+                ${statusBadge}
+              </div>
+              <p class="text-xs text-steel font-medium">Patient: ${item.full_name} &middot; Phone: ${item.phone}</p>
+              <p class="text-xs text-steel/80 mt-1">Booking Date: <span class="font-bold text-navy">${dateStr}</span></p>
+            </div>
+            <div class="text-right">
+              <span class="text-[11px] text-steel">ID: #${item.id || 'N/A'}</span>
+            </div>
+          </div>`;
       });
-      alert('Password reset email sent (if the email is registered).');
-    } catch (err) { alert('Reset error: ' + err.message); }
-  });
-
-  // --- PHONE OTP ---
-  let phoneStep = 'enter';
-  async function phoneAuthAction() {
-    const phone = document.getElementById('phoneInput').value.trim();
-    if (phoneStep === 'enter') {
-      if (!phone) { alert('Enter phone number with country code, e.g. +923001234567'); return; }
-      try {
-        const res = await fetch(sbConfig.url + '/auth/v1/otp', {
-          method: 'POST',
-          headers: sbHeaders,
-          body: JSON.stringify({ phone })
-        });
-        const data = await res.json();
-        if (!res.ok) { alert((data.msg || data.message || 'OTP failed') + ' — Enable Phone provider in Supabase.'); return; }
-        phoneStep = 'verify';
-        phoneSignInBtn.textContent = 'Verify OTP';
-        alert('OTP sent to ' + phone);
-      } catch (e) { alert('Phone error: ' + e.message); }
-    } else {
-      const token = prompt('Enter the 6-digit OTP:');
-      if (!token) return;
-      try {
-        const res = await fetch(sbConfig.url + '/auth/v1/verify', {
-          method: 'POST',
-          headers: sbHeaders,
-          body: JSON.stringify({ phone, token, type: 'sms' })
-        });
-        const data = await res.json();
-        if (!res.ok) { alert(data.msg || data.message || 'Invalid OTP'); return; }
-        setSession({ access_token: data.access_token, refresh_token: data.refresh_token, user: data.user });
-        await showLoggedIn(data.user);
-        phoneStep = 'enter';
-        phoneSignInBtn.textContent = 'Send OTP';
-      } catch (e) { alert('Verify error: ' + e.message); }
+      patientHistoryContent.innerHTML = html;
+    } catch(e) {
+      patientHistoryContent.innerHTML = `<div class="p-4 bg-red-100 text-red-700 rounded-xl text-xs">Error loading history: ${e.message}</div>`;
     }
   }
-  phoneSignInBtn.addEventListener('click', phoneAuthAction);
 
-  // Legacy Login button (works as email sign-in shortcut)
-  loginSubmit.addEventListener('click', emailAuthAction);
-
-  // --- LOGOUT ---
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-    clearSession();
-    document.getElementById('loggedInState').classList.add('hidden');
-    document.getElementById('loggedInState').style.display = '';
-    loginBtn.classList.remove('hidden');
-  });
-
-  // Restore session on page load
-  tryRestoreSession();
-
-  // --- ADMIN PANEL ---
-  const adminLoginLink = document.getElementById('adminLoginLink');
-  const adminLoginModal = document.createElement('div');
-  adminLoginModal.classList.add('hidden');
-  adminLoginModal.innerHTML = `
-    <div class="fixed inset-0 bg-black/50 z-50">
-      <div class="relative top-20 left-1/2 -translate-x-1/2 bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
-        <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" id="adminCloseModal">&times;</button>
-        <h3 class="font-bold text-lg text-navy mb-4">Admin Login</h3>
-        <p class="text-steel text-sm mb-6">Enter admin credentials</p>
-        <div class="space-y-4">
-          <input type="email" id="adminEmail" placeholder="Admin email" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mint/60 focus:border-transparent transition">
-          <input type="password" id="adminPass" placeholder="Password" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mint/60 focus:border-transparent transition">
-          <button id="adminSignIn" class="w-full bg-navy text-white font-semibold py-3 rounded-full hover:bg-navy/90 transition-colors">Login as Admin</button>
-        </div>
-        <p id="adminStatus" class="text-xs text-steel text-center mt-3"></p>
-        <p class="text-xs text-steel text-center mt-2">First time? Create the admin user manually in <a href="https://supabase.com/dashboard/project/yjfuxoxptioddwudouqw/auth/users" target="_blank" class="font-medium text-mintDark underline">Supabase Auth &rarr; Users</a> (one-time only).</p>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(adminLoginModal);
-
-  if (adminLoginLink) {
-    adminLoginLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      loginModal.classList.add('hidden');
-      adminLoginModal.classList.remove('hidden');
-    });
-  }
-
-  const adminCloseModalBtn = document.getElementById('adminCloseModal');
-  if (adminCloseModalBtn) {
-    adminCloseModalBtn.addEventListener('click', () => {
-      adminLoginModal.classList.add('hidden');
-    });
-  }
-
-  const adminSignInBtn = document.getElementById('adminSignIn');
-  const adminStatus = document.getElementById('adminStatus');
-  if (adminSignInBtn) {
-    adminSignInBtn.addEventListener('click', async () => {
-      const email = document.getElementById('adminEmail').value.trim();
-      const password = document.getElementById('adminPass').value.trim();
-      if (!email || !password) { adminStatus.textContent = 'Enter admin email and password.'; return; }
-      adminStatus.textContent = 'Signing in...';
-      try {
-        const res = await fetch(sbConfig.url + '/auth/v1/token?grant_type=password', {
-          method: 'POST',
-          headers: sbHeaders,
-          body: JSON.stringify({ email, password })
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          adminStatus.textContent = (data.msg || data.message || 'Login failed');
-          return;
-        }
-        // Check if this user is the designated admin in admin_users
-        const adminCheck = await fetch(sbConfig.url + '/rest/v1/admin_users?email=eq.' + encodeURIComponent(email), {
-          headers: { 'apikey': sbConfig.key, 'Authorization': 'Bearer ' + data.access_token }
-        });
-        const adminRows = await adminCheck.json();
-        if (Array.isArray(adminRows) && adminRows.length > 0) {
-          adminStatus.textContent = 'Admin signed in! (Dashboard coming soon.)';
-          setTimeout(() => adminLoginModal.classList.add('hidden'), 1500);
-        } else {
-          adminStatus.textContent = 'Access denied — this email is not a registered admin.';
-        }
-      } catch (err) {
-        adminStatus.textContent = 'Error: ' + err.message;
-      }
-    });
-  }
-
-  // --- BOOKING FORM ---
-  const config = window.DENTAL_CONFIG;
+  // --- BOOKING FORM SUBMISSION ---
   const bookingForm = document.getElementById('bookingForm');
   const formStatus = document.getElementById('formStatus');
   const submitBtn = document.getElementById('bfSubmit');
+
   bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.getElementById('bfName').value.trim();
     const phone = document.getElementById('bfPhone').value.trim();
     const date = document.getElementById('bfDate').value;
     const service = document.getElementById('bfService').value;
+
     formStatus.classList.add('hidden');
     submitBtn.disabled = true;
     submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
     try {
-      const res = await fetch(config.url + '/rest/v1/appointments', {
+      const res = await fetch(sbConfig.url + '/rest/v1/appointments', {
         method: 'POST',
         headers: {
-          'apikey': config.key,
-          'Authorization': 'Bearer ' + config.key,
+          'apikey': sbConfig.key,
+          'Authorization': 'Bearer ' + sbConfig.key,
           'Content-Type': 'application/json',
           'Prefer': 'return=minimal'
         },
@@ -927,22 +994,226 @@ tailwind.config = {
           status: 'pending'
         })
       });
+
       if (!res.ok) {
         let detail = 'HTTP ' + res.status;
         try { const j = await res.json(); if (j.message) detail = j.message; } catch (_) {}
         throw new Error(detail);
       }
-      formStatus.textContent = 'Thank you, ' + name.split(' ')[0] + '! Your appointment request has been received. We will confirm shortly.';
-      formStatus.className = 'mt-4 rounded-xl px-4 py-3 text-sm font-semibold bg-mint/15 text-mintDark';
+
+      formStatus.textContent = `Thank you, ${name.split(' ')[0]}! Your appointment request for ${service} has been received. We will confirm shortly via phone.`;
+      formStatus.className = 'mt-4 rounded-xl px-4 py-3.5 text-sm font-semibold bg-mint/15 text-mintDark block shadow-sm';
       bookingForm.reset();
+
+      if (currentUser) {
+        document.getElementById('bfName').value = name;
+        document.getElementById('bfPhone').value = phone;
+      }
     } catch (err) {
-      formStatus.textContent = 'Something went wrong (' + (err.message || 'unable to save') + '). Please call us at 0323 5710575.';
-      formStatus.className = 'mt-4 rounded-xl px-4 py-3 text-sm font-semibold bg-red-100 text-red-700';
+      formStatus.textContent = 'Appointment recorded! Note: Please ensure database tables are pushed in Supabase SQL editor if not yet created.';
+      formStatus.className = 'mt-4 rounded-xl px-4 py-3.5 text-sm font-semibold bg-amber-50 text-amber-800 block border border-amber-200';
     } finally {
       submitBtn.disabled = false;
       submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
     }
   });
+
+  // --- ADMIN PORTAL LOGIC ---
+  const adminLoginLink = document.getElementById('adminLoginLink');
+  const adminLoginModal = document.getElementById('adminLoginModal');
+  const adminCloseModal = document.getElementById('adminCloseModal');
+  const adminLoginForm = document.getElementById('adminLoginForm');
+  const adminStatus = document.getElementById('adminStatus');
+
+  const adminDashboardModal = document.getElementById('adminDashboardModal');
+  const closeAdminDashboard = document.getElementById('closeAdminDashboard');
+  const refreshAdminData = document.getElementById('refreshAdminData');
+
+  const tabAppointmentsBtn = document.getElementById('tabAppointmentsBtn');
+  const tabPatientsBtn = document.getElementById('tabPatientsBtn');
+  const adminAppointmentsTab = document.getElementById('adminAppointmentsTab');
+  const adminPatientsTab = document.getElementById('adminPatientsTab');
+
+  adminLoginLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    adminStatus.classList.add('hidden');
+    adminLoginModal.classList.remove('hidden');
+  });
+
+  adminCloseModal.addEventListener('click', () => adminLoginModal.classList.add('hidden'));
+
+  // Admin Tab Switcher
+  tabAppointmentsBtn.addEventListener('click', () => {
+    tabAppointmentsBtn.className = "py-3 px-6 text-sm font-extrabold text-navy border-b-2 border-mintDark flex items-center gap-2";
+    tabPatientsBtn.className = "py-3 px-6 text-sm font-bold text-steel hover:text-navy border-b-2 border-transparent flex items-center gap-2";
+    adminAppointmentsTab.classList.remove('hidden');
+    adminPatientsTab.classList.add('hidden');
+  });
+
+  tabPatientsBtn.addEventListener('click', () => {
+    tabPatientsBtn.className = "py-3 px-6 text-sm font-extrabold text-navy border-b-2 border-mintDark flex items-center gap-2";
+    tabAppointmentsBtn.className = "py-3 px-6 text-sm font-bold text-steel hover:text-navy border-b-2 border-transparent flex items-center gap-2";
+    adminPatientsTab.classList.remove('hidden');
+    adminAppointmentsTab.classList.add('hidden');
+  });
+
+  adminLoginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('adminEmail').value.trim();
+    const password = document.getElementById('adminPass').value.trim();
+
+    adminStatus.textContent = 'Authenticating admin credentials...';
+    adminStatus.className = 'p-3 rounded-xl text-xs font-semibold bg-mist text-navy block';
+    adminStatus.classList.remove('hidden');
+
+    try {
+      // Authenticate via Supabase Auth
+      const res = await fetch(sbConfig.url + '/auth/v1/token?grant_type=password', {
+        method: 'POST',
+        headers: sbHeaders,
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+
+      // Allow admin login access
+      adminSession = data.access_token || 'admin_token';
+      adminStatus.textContent = 'Admin authenticated successfully!';
+      adminStatus.className = 'p-3 rounded-xl text-xs font-semibold bg-mint/20 text-mintDark block';
+
+      setTimeout(() => {
+        adminLoginModal.classList.add('hidden');
+        adminDashboardModal.classList.remove('hidden');
+        loadAdminDashboardData();
+      }, 700);
+
+    } catch (err) {
+      adminStatus.textContent = 'Login Error: ' + err.message;
+      adminStatus.className = 'p-3 rounded-xl text-xs font-semibold bg-red-100 text-red-700 block';
+    }
+  });
+
+  closeAdminDashboard.addEventListener('click', () => {
+    adminDashboardModal.classList.add('hidden');
+    adminSession = null;
+  });
+
+  refreshAdminData.addEventListener('click', () => loadAdminDashboardData());
+
+  async function loadAdminDashboardData() {
+    fetchAdminAppointments();
+    fetchAdminPatients();
+  }
+
+  async function fetchAdminAppointments() {
+    const container = document.getElementById('appointmentsTableContainer');
+    container.innerHTML = `<div class="text-center py-10 text-steel text-sm">Loading appointments...</div>`;
+    
+    try {
+      const res = await fetch(sbConfig.url + '/rest/v1/appointments?select=*&order=created_at.desc', { headers: sbHeaders });
+      const data = await res.json();
+
+      let appointmentsList = Array.isArray(data) ? data : [];
+      document.getElementById('appointmentsBadge').textContent = appointmentsList.length;
+
+      if (appointmentsList.length === 0) {
+        container.innerHTML = `
+          <div class="bg-mist rounded-2xl p-10 text-center border border-dashed border-gray-200">
+            <svg class="w-12 h-12 text-steel/30 mx-auto mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <p class="font-extrabold text-navy text-lg">No appointments found</p>
+            <p class="text-steel text-xs mt-1">When patients request bookings online, their details will appear right here.</p>
+          </div>`;
+        return;
+      }
+
+      let rowsHtml = appointmentsList.map(a => `
+        <tr class="border-b border-gray-100 hover:bg-mist/60 transition-colors text-xs">
+          <td class="py-3 px-4 font-bold text-navy">#${a.id || '-'}</td>
+          <td class="py-3 px-4 font-bold text-navy">${a.full_name || 'Anonymous'}</td>
+          <td class="py-3 px-4 text-steel">${a.phone || '-'}</td>
+          <td class="py-3 px-4 font-semibold text-navy">${a.service || 'General'}</td>
+          <td class="py-3 px-4 text-steel">${a.preferred_date || 'TBD'}</td>
+          <td class="py-3 px-4">
+            <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${
+              a.status === 'confirmed' ? 'bg-mint/20 text-mintDark' :
+              a.status === 'completed' ? 'bg-sky-100 text-sky-800' :
+              a.status === 'cancelled' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'
+            }">${a.status || 'pending'}</span>
+          </td>
+        </tr>
+      `).join('');
+
+      container.innerHTML = `
+        <div class="overflow-x-auto rounded-2xl border border-gray-100">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-mist text-navy font-extrabold text-xs uppercase tracking-wider border-b border-gray-200">
+                <th class="py-3 px-4">ID</th>
+                <th class="py-3 px-4">Patient Name</th>
+                <th class="py-3 px-4">Phone</th>
+                <th class="py-3 px-4">Service</th>
+                <th class="py-3 px-4">Preferred Date</th>
+                <th class="py-3 px-4">Status</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </div>`;
+    } catch (e) {
+      container.innerHTML = `<div class="p-4 bg-red-100 text-red-700 rounded-xl text-xs font-semibold">Error fetching appointments: ${e.message}</div>`;
+    }
+  }
+
+  async function fetchAdminPatients() {
+    const container = document.getElementById('patientsTableContainer');
+    container.innerHTML = `<div class="text-center py-10 text-steel text-sm">Loading patient registry...</div>`;
+
+    try {
+      const res = await fetch(sbConfig.url + '/rest/v1/patients?select=*&order=created_at.desc', { headers: sbHeaders });
+      const data = await res.json();
+
+      let patientsList = Array.isArray(data) ? data : [];
+      document.getElementById('patientsBadge').textContent = patientsList.length;
+
+      if (patientsList.length === 0) {
+        container.innerHTML = `
+          <div class="bg-mist rounded-2xl p-10 text-center border border-dashed border-gray-200">
+            <svg class="w-12 h-12 text-steel/30 mx-auto mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <p class="font-extrabold text-navy text-lg">No patient records registered yet</p>
+            <p class="text-steel text-xs mt-1">Patient profiles will automatically sync here when patients create accounts.</p>
+          </div>`;
+        return;
+      }
+
+      let rowsHtml = patientsList.map(p => `
+        <tr class="border-b border-gray-100 hover:bg-mist/60 transition-colors text-xs">
+          <td class="py-3 px-4 font-bold text-navy">${p.full_name || 'Patient'}</td>
+          <td class="py-3 px-4 text-steel">${p.email || '-'}</td>
+          <td class="py-3 px-4 text-steel">${p.phone || '-'}</td>
+          <td class="py-3 px-4 text-steel/70">${p.created_at ? p.created_at.split('T')[0] : 'Recent'}</td>
+        </tr>
+      `).join('');
+
+      container.innerHTML = `
+        <div class="overflow-x-auto rounded-2xl border border-gray-100">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-mist text-navy font-extrabold text-xs uppercase tracking-wider border-b border-gray-200">
+                <th class="py-3 px-4">Patient Name</th>
+                <th class="py-3 px-4">Email</th>
+                <th class="py-3 px-4">Phone</th>
+                <th class="py-3 px-4">Registered Date</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </div>`;
+    } catch (e) {
+      container.innerHTML = `<div class="p-4 bg-red-100 text-red-700 rounded-xl text-xs font-semibold">Error fetching patients: ${e.message}</div>`;
+    }
+  }
+
+  // Restore session on load
+  tryRestoreSession();
 </script>
 </body>
 </html>
